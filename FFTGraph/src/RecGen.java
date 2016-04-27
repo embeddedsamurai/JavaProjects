@@ -5,27 +5,27 @@
 
 public class RecGen implements WaveGen{
 	
-	/** ü”g” */
+	/** å‘¨æ³¢æ•° */
 	private double freq;
-	/** ƒTƒ“ƒvƒŠƒ“ƒOü”g” */
+	/** ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•° */
 	private double sample;
 	
 	private int count = 0;
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^ 
-	 * @param freq2   ¶¬‚·‚é‹éŒ`”g‚Ìü”g”
-	 * @param sample2 ¶¬‚·‚é‹éŒ`”g‚ÌƒTƒ“ƒvƒŠƒ“ƒOü”g”
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ 
+	 * @param freq2   ç”Ÿæˆã™ã‚‹çŸ©å½¢æ³¢ã®å‘¨æ³¢æ•°
+	 * @param sample2 ç”Ÿæˆã™ã‚‹çŸ©å½¢æ³¢ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 	 */
 	public RecGen(double freq,double sample) {
-		//‰Šú‰»
+		//åˆæœŸåŒ–
 		init(freq, sample);
 	}
 	
 	/**
-	 * ‰Šú‰»
-	 * @param freq   ¶¬‚·‚é‹éŒ`”g‚Ìü”g”
-	 * @param sample ¶¬‚·‚é‹éŒ`”g‚ÌƒTƒ“ƒvƒŠƒ“ƒOü”g”
+	 * åˆæœŸåŒ–
+	 * @param freq   ç”Ÿæˆã™ã‚‹çŸ©å½¢æ³¢ã®å‘¨æ³¢æ•°
+	 * @param sample ç”Ÿæˆã™ã‚‹çŸ©å½¢æ³¢ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 	 */
 	public void init(double freq, double sample){
 		this.freq = freq;
@@ -34,8 +34,8 @@ public class RecGen implements WaveGen{
 	}
 	
 	/**
-	 * ‹éŒ`”g‚ğ“¾‚é
-	 * @return ¶¬‚µ‚½‹éŒ`”g
+	 * çŸ©å½¢æ³¢ã‚’å¾—ã‚‹
+	 * @return ç”Ÿæˆã—ãŸçŸ©å½¢æ³¢
 	 */
 	public double nextWave(){
 		

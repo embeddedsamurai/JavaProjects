@@ -10,9 +10,9 @@ public class TriangleGen implements WaveGen {
 	private double freq = 0;
 	private boolean flag = true;
 	/**
-	 * コンストラクタ
-	 * @param freq　生成する三角波の周波数
-	 * @param sample サンプル周波数
+	 * 繧ｳ繝ｳ繧ｹ繝医Λ繧ｯ繧ｿ
+	 * @param freq縲逕滓�舌☆繧倶ｸ芽ｧ呈ｳ｢縺ｮ蜻ｨ豕｢謨ｰ
+	 * @param sample 繧ｵ繝ｳ繝励Ν蜻ｨ豕｢謨ｰ
 	 */
 	public TriangleGen(double freq,double sample) {		
 		init(freq, sample);

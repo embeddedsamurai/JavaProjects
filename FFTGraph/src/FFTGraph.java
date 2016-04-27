@@ -21,29 +21,29 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	/** For Debug */
 	public static final boolean DEBUG=false;
 	
-	/** ƒ‹[ƒv“à‚Å‚ÌƒXƒŠ[ƒvŠÔ*/
+	/** ãƒ«ãƒ¼ãƒ—å†…ã§ã®ã‚¹ãƒªãƒ¼ãƒ—æ™‚é–“*/
 	private static final int SLEEP_TIME = 20;
 	
 	private static int sleepTime=SLEEP_TIME;
-	/** ƒ^ƒCƒgƒ‹ƒ‚[ƒh */
+	/** ã‚¿ã‚¤ãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰ */
 	public static final int TITLE_MODE = 0;
-	/** ŒvZƒ‚[ƒh   */
+	/** è¨ˆç®—ãƒ¢ãƒ¼ãƒ‰   */
 	public static final int CALC_MODE = 1;
-	/** I—¹ƒ‚[ƒh   */
+	/** çµ‚äº†ãƒ¢ãƒ¼ãƒ‰   */
 	public static final int EXIT_MODE = 2;
 	
-	/** ‰æ–Ê‚ÌƒTƒCƒY */
+	/** ç”»é¢ã®ã‚µã‚¤ã‚º */
 	public static final int SCREEN_W=600,SCREEN_H=700;
 
-	/** ƒtƒŒ[ƒ€ */
+	/** ãƒ•ãƒ¬ãƒ¼ãƒ  */
 	public static final int FRAME=10;
 	
 	/** main thread */
-	private Thread  thread = null;   //ƒXƒŒƒbƒh
+	private Thread  thread = null;   //ã‚¹ãƒ¬ãƒƒãƒ‰
 	
 	/** for double buffering */
-	public Image    offimage;       //ƒ_ƒuƒ‹ƒoƒbƒtƒ@ƒŠƒ“ƒO—p‚ÌƒCƒ[ƒW
-	public Graphics back;           //ƒ_ƒuƒ‹ƒoƒbƒtƒ@ƒŠƒ“ƒO—p‚ÌƒOƒ‰ƒtƒBƒbƒNƒX(ƒoƒbƒNƒoƒbƒtƒ@)
+	public Image    offimage;       //ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ç”¨ã®ã‚¤ãƒ¡ãƒ¼ã‚¸
+	public Graphics back;           //ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ç”¨ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹(ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡)
 
 	private Color backColor       = Color.white;
 	public static int width       = SCREEN_W;
@@ -53,11 +53,11 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	public Key key;
 	public TitleManager titleManager;
 	public FilterManager filterManager;
-	public MyCanvas                 mc;//MyCanvas—p‚Ìƒf[ƒ^
+	public MyCanvas                 mc;//MyCanvasç”¨ã®ãƒ‡ãƒ¼ã‚¿
 	
-		/** ó‘Ô */
+		/** çŠ¶æ…‹ */
 	public static int mode_state;
-	/** ‚Ğ‚Æ‚Â‘O‚Ìó‘Ô */
+	/** ã²ã¨ã¤å‰ã®çŠ¶æ…‹ */
 	public int back_mode_state;
 
 	/** Button */
@@ -69,26 +69,26 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	/** Scroll Bar */
 	Scrollbar sampleSlider;
 	
-	/** ƒ‰ƒWƒIƒ{ƒ^ƒ“(‘‹ŠÖ”) */
+	/** ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³(çª“é–¢æ•°) */
 	CheckboxGroup wndFncBtn = new CheckboxGroup();
 	Checkbox chk_none,chk_hamming,chk_hann,chk_blackman;
 
-	/** ƒ‰ƒWƒIƒ{ƒ^ƒ“(¶¬M†) */
+	/** ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³(ç”Ÿæˆä¿¡å·) */
 	CheckboxGroup signalBtn = new CheckboxGroup();
 	Checkbox chk_Sine,chk_Rect,chk_Sawtooth,chk_Triangle,chk_ECG,chk_PLS;
 	
-	/** ƒ‰ƒWƒIƒ{ƒ^ƒ“(•`‰æ•ûŒü) */
+	/** ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³(æç”»æ–¹å‘) */
 	CheckboxGroup displayBtn = new CheckboxGroup();
 	Checkbox chk_leftRight,chk_RightLeft;
 
-	/** ƒ‰ƒWƒIƒ{ƒ^ƒ“(ü”g”•ÏŠ·) */
+	/** ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³(å‘¨æ³¢æ•°å¤‰æ›) */
 	CheckboxGroup FreqBtn = new CheckboxGroup();
 	Checkbox chk_DFT,chk_FFT,chk_DWVD,chk_SFFT,chk_Wavelet,chk_DWavelet,chk_ALLFT;
-	//ƒTƒCƒ“”g
+	//ã‚µã‚¤ãƒ³æ³¢
 	public static final int INPUT_SIN = 0;
 	
 	//----------------------------------------------------------
-	//ƒAƒvƒŒƒbƒg‚Ì‚¨–ñ‘©ˆ—
+	//ã‚¢ãƒ—ãƒ¬ãƒƒãƒˆã®ãŠç´„æŸå‡¦ç†
 	//
 	//1 init
 	//2 start
@@ -98,7 +98,7 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	//----------------------------------------------------------
 	public void init()
 	{
-		/** ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚Ìİ’è */
+		/** ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã®è¨­å®š */
 		String backs=getParameter("BGCOLOR");
 		Color c;
 		
@@ -107,11 +107,11 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		
 		setBackground(backColor);
 		
-		/** ƒ}ƒEƒX‚Ìİ’è */
+		/** ãƒã‚¦ã‚¹ã®è¨­å®š */
 		addMouseMotionListener(this);
 		addMouseListener(this);
 		
-		/** ƒL[‚Ìİ’è */
+		/** ã‚­ãƒ¼ã®è¨­å®š */
 		addKeyListener(this);
 		this.width = this.getSize().width;
 		this.height = this.getSize().height;
@@ -128,7 +128,7 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		mc.setViewport(0, 1, 0.2, 0.6);
 		mc.setViewport(0, 1,   0, 0.2);
 		
-		//ƒ†[ƒUÀ•WŒn‚Ìİ’è 
+		//ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã®è¨­å®š 
 		//minx maxx miny maxy
 		mc.setUserWindow(0,200,0,100);
 		mc.setUserWindow(0,200,0,100);
@@ -138,7 +138,7 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		filterManager = new FilterManager(this);
 		
 		
-		//Å‰‚Íƒ^ƒCƒgƒ‹‚ğ•\¦
+		//æœ€åˆã¯ã‚¿ã‚¤ãƒˆãƒ«ã‚’è¡¨ç¤º
 		mode_state = TITLE_MODE;
 		back_mode_state = mode_state;
 		
@@ -165,32 +165,32 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 
 	public void run(){
 		
-		// ƒL[‚Ì‰Šú‰»
+		// ã‚­ãƒ¼ã®åˆæœŸåŒ–
 		key.init();
-		//ƒXƒŠ[ƒvŠÔ
+		//ã‚¹ãƒªãƒ¼ãƒ—æ™‚é–“
 		long startTime = System.currentTimeMillis();
-		//ŒvZ‚É‚©‚©‚Á‚½ŠÔ
+		//è¨ˆç®—ã«ã‹ã‹ã£ãŸæ™‚é–“
 		long pastTime = 0;
 				
 		while (true){
-			//ƒL[‚ğXV
+			//ã‚­ãƒ¼ã‚’æ›´æ–°
 			key.registKeyEvent();					
 					
-			//ƒL[AŒvZA•`‰æ‚ÌŠeíˆ—
-			if(mode_state == TITLE_MODE){//ƒ^ƒCƒgƒ‹ƒ‚[ƒh
+			//ã‚­ãƒ¼ã€è¨ˆç®—ã€æç”»ã®å„ç¨®å‡¦ç†
+			if(mode_state == TITLE_MODE){//ã‚¿ã‚¤ãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰
 				titleManager.process();
-			}else if(mode_state == CALC_MODE){//ŒvZƒ‚[ƒh
+			}else if(mode_state == CALC_MODE){//è¨ˆç®—ãƒ¢ãƒ¼ãƒ‰
 				filterManager.process();
 			}	
 
-			if(back_mode_state != mode_state){//ƒ‚[ƒh‚Ì•ÏX‚ª‚È‚¢‚©‚Ç‚¤‚©ƒ`ƒFƒbƒNB
-				//¡‚Ìó‘Ô‚ğæ‚Á‚Ä‚¨‚­
+			if(back_mode_state != mode_state){//ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´ãŒãªã„ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã€‚
+				//ä»Šã®çŠ¶æ…‹ã‚’å–ã£ã¦ãŠã
 				Color color = new Color(255,255,255);
 				back.setColor(color);
 				back.fillRect(0, 0, width,height);
 				Font f0 = SetFont(back.getFont().getName(),back.getFont().getStyle(), 1.0);
-				//•W€ƒTƒCƒY‚ÌƒtƒHƒ“ƒg‚ğ¶¬
-				back.setFont(f0);//Œ»İƒtƒHƒ“ƒg‚Ìİ’è
+				//æ¨™æº–ã‚µã‚¤ã‚ºã®ãƒ•ã‚©ãƒ³ãƒˆã‚’ç”Ÿæˆ
+				back.setFont(f0);//ç¾åœ¨ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®š
 				back.setColor(Color.black);
 				
 				if(mode_state == CALC_MODE ){
@@ -199,14 +199,14 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 				back_mode_state = mode_state;
 			}
 			
-			// repaint()‚Åpaint(g)‚ÌŒÄ‚Ño‚µ,‰‚ß‚Ä•`‰æ‚ªXV‚³‚ê‚é
+			// repaint()ã§paint(g)ã®å‘¼ã³å‡ºã—,åˆã‚ã¦æç”»ãŒæ›´æ–°ã•ã‚Œã‚‹
 			repaint();
 				
-			//ŒvZ‚É‚©‚©‚Á‚½ŠÔ
+			//è¨ˆç®—ã«ã‹ã‹ã£ãŸæ™‚é–“
 			pastTime = System.currentTimeMillis() - startTime;					
 					
 			if(pastTime < sleepTime){
-				//‹x~
+				//ä¼‘æ­¢
 				pause(sleepTime+5 - pastTime);
 			}
 			
@@ -216,10 +216,10 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 
 	public void SetCalcWindow(){
 		
-		//x 0 100 y 0 10‚Ì”ÍˆÍ
+		//x 0 100 y 0 10ã®ç¯„å›²
 		double[]  bminx={40},bmaxx={50},bminy={2.5},bmaxy={6};
 		mc.getWindowPosition(bminx,bmaxx,bminy,bmaxy,3);
-		//ƒ{ƒ^ƒ“ŠÖŒW€”õ
+		//ãƒœã‚¿ãƒ³é–¢ä¿‚æº–å‚™
 		btn1=new Button(" Start ");
 		btn2=new Button(" Stop ");
 		add(btn1);
@@ -254,13 +254,13 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		int mado_y=16;
 		
 		/////////////////////////////////////////////////
-		mc.drawString("œ‘S‘Ìİ’è",0,16,3);
+		mc.drawString("â—å…¨ä½“è¨­å®š",0,16,3);
 		
-		mc.drawString(" ŠÔ‚Ì”ÍˆÍ",0,14,3);
-		//w’è‚³‚ê‚½•ûŒüA‰Šú’l0A‰Â‹—Ê10AÅ¬’l1AÅ‘å’l100‚ÌƒXƒNƒ[ƒ‹ƒo[‚ğì‚é
+		mc.drawString("â–¡æ™‚é–“ã®ç¯„å›²",0,14,3);
+		//æŒ‡å®šã•ã‚ŒãŸæ–¹å‘ã€åˆæœŸå€¤0ã€å¯è¦–é‡10ã€æœ€å°å€¤1ã€æœ€å¤§å€¤100ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’ä½œã‚‹
 		xGainSlider = new Scrollbar(Scrollbar.HORIZONTAL,0,10,1,110);
 		xGainSlider.setBackground(Color.gray);
-		//’·‚³200 •20‚Ìƒo[‚ğì‚é
+		//é•·ã•200 å¹…20ã®ãƒãƒ¼ã‚’ä½œã‚‹
 		bminx[0]=13;
 		bminy[0]=16;
 		bmaxx[0]=0;
@@ -272,11 +272,11 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		add(xGainSlider);
 		
         ////////////////////////////////////////////////////////
-		mc.drawString(" ü”g”‚Ì”ÍˆÍ",30,14,3);
-		//w’è‚³‚ê‚½•ûŒüA‰Šú’l0A‰Â‹—Ê10AÅ¬’l1AÅ‘å’l100‚ÌƒXƒNƒ[ƒ‹ƒo[‚ğì‚é
+		mc.drawString("â–¡å‘¨æ³¢æ•°ã®ç¯„å›²",30,14,3);
+		//æŒ‡å®šã•ã‚ŒãŸæ–¹å‘ã€åˆæœŸå€¤0ã€å¯è¦–é‡10ã€æœ€å°å€¤1ã€æœ€å¤§å€¤100ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’ä½œã‚‹
 		xFFTGainSlider = new Scrollbar(Scrollbar.HORIZONTAL,0,10,1,110);
 		xFFTGainSlider.setBackground(Color.gray);
-		//’·‚³200 •20‚Ìƒo[‚ğì‚é
+		//é•·ã•200 å¹…20ã®ãƒãƒ¼ã‚’ä½œã‚‹
 		bminx[0]=30+15;
 		bminy[0]=16;
 		mc.getWindowPosition(bminx,bmaxx,bminy,bmaxy,3);
@@ -284,11 +284,11 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		xFFTGainSlider.addAdjustmentListener(this);
 		add(xFFTGainSlider);
 		////////////////////////////////////////////////////////////
-		mc.drawString(" ƒTƒ“ƒvƒŠƒ“ƒOü”g”",62,14,3);
-		//w’è‚³‚ê‚½•ûŒüA‰Šú’l0A‰Â‹—Ê10AÅ¬’l1AÅ‘å’l100‚ÌƒXƒNƒ[ƒ‹ƒo[‚ğì‚é
+		mc.drawString("â–¡ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°",62,14,3);
+		//æŒ‡å®šã•ã‚ŒãŸæ–¹å‘ã€åˆæœŸå€¤0ã€å¯è¦–é‡10ã€æœ€å°å€¤1ã€æœ€å¤§å€¤100ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’ä½œã‚‹
 		sampleSlider = new Scrollbar(Scrollbar.HORIZONTAL,250,10,100,1000);
 		sampleSlider.setBackground(Color.gray);
-		//’·‚³200 •20‚Ìƒo[‚ğì‚é
+		//é•·ã•200 å¹…20ã®ãƒãƒ¼ã‚’ä½œã‚‹
 		bminx[0]=82;
 		bminy[0]=16;
 		mc.getWindowPosition(bminx,bmaxx,bminy,bmaxy,3);
@@ -298,12 +298,12 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		
 		////////////////////////////////////////////////////
 		////////////////////////////////////////////////////
-		mc.drawString("œ“ü—Í”gŒ`",0,12,3);
-		mc.drawString(" ü”g”‚Ìİ’è",0,10,3);
-		//w’è‚³‚ê‚½•ûŒüA‰Šú’l5A‰Â‹—Ê10AÅ¬’l1AÅ‘å’l100‚ÌƒXƒNƒ[ƒ‹ƒo[‚ğì‚é
+		mc.drawString("â—å…¥åŠ›æ³¢å½¢",0,12,3);
+		mc.drawString("â–¡å‘¨æ³¢æ•°ã®è¨­å®š",0,10,3);
+		//æŒ‡å®šã•ã‚ŒãŸæ–¹å‘ã€åˆæœŸå€¤5ã€å¯è¦–é‡10ã€æœ€å°å€¤1ã€æœ€å¤§å€¤100ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’ä½œã‚‹
 		freqSlider = new Scrollbar(Scrollbar.HORIZONTAL,5,10,1,110);
 		freqSlider.setBackground(Color.gray);
-		//’·‚³200 •20‚Ìƒo[‚ğì‚é
+		//é•·ã•200 å¹…20ã®ãƒãƒ¼ã‚’ä½œã‚‹
 		bminx[0]=13;
 		bminy[0]=12;
 		mc.getWindowPosition(bminx,bmaxx,bminy,bmaxy,3);
@@ -312,7 +312,7 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		add(freqSlider);
 		//
 		
-		mc.drawString(" “ü—Í”gŒ`‚Ì‘I‘ğ",0,7,3);
+		mc.drawString("â–¡å…¥åŠ›æ³¢å½¢ã®é¸æŠ",0,7,3);
 					
 		mado_y =9;
 		mado_x =17;
@@ -363,7 +363,7 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		
 		////////////////////////////////////////////////////////////////
 	
-		mc.drawString("œü”g”•ÏŠ·",0,4.5,3);
+		mc.drawString("â—å‘¨æ³¢æ•°å¤‰æ›",0,4.5,3);
 		
 		mado_y =4;
 		mado_x =0;
@@ -375,17 +375,17 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		mado_y = (int)bminy[0];
 		
 		
-		chk_DFT = new Checkbox("—£Uƒt[ƒŠƒG",FreqBtn,true);
+		chk_DFT = new Checkbox("é›¢æ•£ãƒ•ãƒ¼ãƒªã‚¨",FreqBtn,true);
 		chk_DFT.setBounds(new Rectangle(mado_x, mado_y, 100, 20));
 		chk_DFT.addItemListener(this);
 					
 		mado_x = mado_x + 100;
-		chk_FFT = new Checkbox("‚‘¬ƒt[ƒŠƒG",FreqBtn,false);
+		chk_FFT = new Checkbox("é«˜é€Ÿãƒ•ãƒ¼ãƒªã‚¨",FreqBtn,false);
 		chk_FFT.setBounds(new Rectangle(mado_x, mado_y, 100, 20));
 		chk_FFT.addItemListener(this);
 		
 		mado_x = mado_x + 100;
-		chk_ALLFT = new Checkbox("—¼•û•\¦",FreqBtn,false);
+		chk_ALLFT = new Checkbox("ä¸¡æ–¹è¡¨ç¤º",FreqBtn,false);
 		chk_ALLFT.setBounds(new Rectangle(mado_x, mado_y, 100, 20));
 		chk_ALLFT.addItemListener(this);
 		
@@ -395,8 +395,8 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		///////////////////////////////////////////////////////
 		//CheckboxGroup wndFncBtn = new CheckboxGroup();
 		//Checkbox chk_none,chk_hamming,chk_hann,chk_blackman;
-		//ƒ‰ƒWƒIƒ{ƒ^ƒ“(‘‹ŠÖ”)
-		mc.drawString("œ‘‹ŠÖ”",50,4.5,3);
+		//ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³(çª“é–¢æ•°)
+		mc.drawString("â—çª“é–¢æ•°",50,4.5,3);
 		
 		mado_y =4;
 		mado_x =50;
@@ -447,8 +447,8 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	
 	
 	/**
-	 * ƒ‚[ƒh‚ğ•ÏX‚·‚é
-	 * ÀÛ‚É”½‰f‚³‚ê‚é‚Ì‚ÍAƒ‹[ƒv“à‚Å‚ÌŸ‚Ìó‘Ô‚Ìƒ`ƒFƒbƒN
+	 * ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
+	 * å®Ÿéš›ã«åæ˜ ã•ã‚Œã‚‹ã®ã¯ã€ãƒ«ãƒ¼ãƒ—å†…ã§ã®æ¬¡ã®çŠ¶æ…‹ã®ãƒã‚§ãƒƒã‚¯æ™‚
 	 * 
 	 * @param mode
 	 */
@@ -458,11 +458,11 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	
 	
 	/**
-	 * ƒXƒŒƒbƒh‚Ì‹x~ 
+	 * ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä¼‘æ­¢ 
 	 */
 	public void pause(long time){		
 		try {
-			//ƒXƒŠ[ƒv
+			//ã‚¹ãƒªãƒ¼ãƒ—
 			Thread.sleep(time);	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -471,7 +471,7 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 
 	
 	/** 
-		"rrggbb"Œ`®‚Ì•¶š—ñ‚ğColorƒIƒuƒWƒFƒNƒg‚É•ÏŠ· 
+		"rrggbb"å½¢å¼ã®æ–‡å­—åˆ—ã‚’Colorã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ› 
 	*/
 	private static Color stringToColor(String paramValue)
 	{
@@ -490,15 +490,15 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	
 	public void mouseDragged(MouseEvent e)
 	{ 
-		// ƒ}ƒEƒX‚ªƒhƒ‰ƒbƒO‚³‚ê‚½
+		// ãƒã‚¦ã‚¹ãŒãƒ‰ãƒ©ãƒƒã‚°ã•ã‚ŒãŸ
 		Key.mouseX = e.getX();
 		Key.mouseY = e.getY();
 	}
 
 	public void mousePressed(MouseEvent e)
 	{ 
-		// ƒ}ƒEƒXƒ{ƒ^ƒ“‚Ì¶‚ª‰Ÿ‚³‚ê‚½
-		if(e.getModifiers() == 16)	//¶ƒNƒŠƒbƒN
+		// ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ã®å·¦ãŒæŠ¼ã•ã‚ŒãŸ
+		if(e.getModifiers() == 16)	//å·¦ã‚¯ãƒªãƒƒã‚¯
 		{
 			Key.isPressMouse = true;
 			mouseDragged(e);
@@ -507,12 +507,12 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	
 	public void mouseReleased(MouseEvent e)
 	{ 
-		// ƒ}ƒEƒXƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½
+		// ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚ŒãŸ
 		Key.isPressMouse = false;
 	}
 	
 	
-	//g—p‚µ‚È‚¢‚ªA‹Lq‚µ‚Ä‚¨‚©‚È‚¢‚ÆƒGƒ‰[
+	//ä½¿ç”¨ã—ãªã„ãŒã€è¨˜è¿°ã—ã¦ãŠã‹ãªã„ã¨ã‚¨ãƒ©ãƒ¼
 	public void mouseMoved(MouseEvent e){}
 	public void mouseExited(MouseEvent e){}
 	public void mouseEntered(MouseEvent e){}
@@ -534,14 +534,14 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		}
 		
 		
-		//space‚ª‰Ÿ‚³‚ê‚½
+		//spaceãŒæŠ¼ã•ã‚ŒãŸ
 		if(param==32){
 			param=Key.KEY_SPACE;
 			Key.keyFlag[0] |= (1L << param);
 			Key.keyFlag[2] |= (1L << param);
 		}
 		
-		//enter‚ª‰Ÿ‚³‚ê‚½
+		//enterãŒæŠ¼ã•ã‚ŒãŸ
 		if(param==10){
 			param=Key.KEY_ENTER;
 			Key.keyFlag[0] |= (1L << param);
@@ -559,13 +559,13 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 			Key.keyFlag[2] &= ~(1L << param);
 		}
 		
-		//space‚ª‚Í‚È‚ê‚½
+		//spaceãŒã¯ãªã‚ŒãŸ
 		if(param==32){
 			param=Key.KEY_SPACE;
 			Key.keyFlag[2] &= ~(1L << param);
 		}
 		
-		//enter‚ª‚Í‚È‚ê‚½
+		//enterãŒã¯ãªã‚ŒãŸ
 		if(param==10){
 			param=Key.KEY_ENTER;
 			Key.keyFlag[2] &= ~(1L << param);
@@ -575,8 +575,8 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	public void keyTyped(KeyEvent e){}
 	
 	/** 
-		* ------------------ ƒ{ƒ^ƒ“ŠÖŒWƒƒ\ƒbƒh ------------------------ */
-	//ƒeƒLƒXƒgƒGƒŠƒA‚É”’l‚ª‹L“ü‚³‚ê‚½
+		* ------------------ ãƒœã‚¿ãƒ³é–¢ä¿‚ãƒ¡ã‚½ãƒƒãƒ‰ ------------------------ */
+	//ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢ã«æ•°å€¤ãŒè¨˜å…¥ã•ã‚ŒãŸ
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource()==btn1){ //calc start
 			btn1.setBackground(new Color(255,220,150));
@@ -591,7 +591,7 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	}
 
 	/** 
-		* ------------------ Checkƒ{ƒ^ƒ“ŠÖŒWƒƒ\ƒbƒh ------------------------ */
+		* ------------------ Checkãƒœã‚¿ãƒ³é–¢ä¿‚ãƒ¡ã‚½ãƒƒãƒ‰ ------------------------ */
 	public void itemStateChanged(ItemEvent e){
 		if(e.getItemSelectable()==chk_Sine){
 			if(DEBUG) System.out.println("sine");
@@ -634,27 +634,27 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 	}
 
 	/** 
-		* ------------------ ƒo[ŠÖŒWƒƒ\ƒbƒh ------------------------ */
+		* ------------------ ãƒãƒ¼é–¢ä¿‚ãƒ¡ã‚½ãƒƒãƒ‰ ------------------------ */
 	public void adjustmentValueChanged(AdjustmentEvent ae){
 	
 		
 		////////////////////////////////////
-		//‘S‘Ìİ’è
+		//å…¨ä½“è¨­å®š
 		///////////////////////////////////
-		//ŠÔ‚Ì”ÍˆÍ
+		//æ™‚é–“ã®ç¯„å›²
 		if(ae.getAdjustable()==xGainSlider){
 			int value=xGainSlider.getValue();
 			System.out.println("current value="+value);
 			filterManager.setXGain(value);
 			
 		}
-		//ü”g”‚Ì”ÍˆÍ
+		//å‘¨æ³¢æ•°ã®ç¯„å›²
 		if(ae.getAdjustable()==xFFTGainSlider){
 			int value=xFFTGainSlider.getValue();
 			System.out.println("current value="+value);
 			filterManager.setXFFTGain(value);
 		}
-		//ƒTƒ“ƒvƒŠƒ“ƒOü”g”
+		//ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 		if(ae.getAdjustable()==sampleSlider){
 			int sample=sampleSlider.getValue();
 			filterManager.setSampleRate((double)sample);
@@ -664,9 +664,9 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		}
 
 		///////////////////////////////////
-		//“ü—Í”gŒ`
+		//å…¥åŠ›æ³¢å½¢
 		//////////////////////////////////
-		//ü”g”‚Ìİ’è
+		//å‘¨æ³¢æ•°ã®è¨­å®š
 		if(ae.getAdjustable()==freqSlider){
 			int freq=freqSlider.getValue();
 			if(DEBUG) System.out.println("current freq="+freq);
@@ -679,12 +679,12 @@ public class FFTGraph extends Applet implements Runnable,MouseMotionListener,Mou
 		
 	}
 	
-	// ƒtƒHƒ“ƒg—p
+	// ãƒ•ã‚©ãƒ³ãƒˆç”¨
 	final static int DefaultFontSize = 12;
 
 	public static Font SetFont(String name, int style, double size){
-		if (size <= 0) size = 1.0;//ƒTƒCƒY‚ª•‰‚È‚çƒfƒtƒHƒ‹ƒg’l
-		int isize = (int)(DefaultFontSize*size);//ƒtƒHƒ“ƒg‚ğƒXƒP[ƒŠƒ“ƒO
+		if (size <= 0) size = 1.0;//ã‚µã‚¤ã‚ºãŒè² ãªã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
+		int isize = (int)(DefaultFontSize*size);//ãƒ•ã‚©ãƒ³ãƒˆã‚’ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°
 		Font f = new Font(name,style,isize);
 		return f;
 	}

@@ -7,44 +7,44 @@ import java.util.*;
 
 public class MyFFT extends Thread{
 	
-	/** ƒfƒtƒHƒ‹ƒg‚Ì¸“x */
+	/** ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç²¾åº¦ */
 	private static final int DEFAULT_N = 512;
-	/** FFT‚Ì¸“x */
+	/** FFTã®ç²¾åº¦ */
 	private int n ;
 	private int n34;
 	
-	//‘‹ŠÖ”‚È‚µ
+	//çª“é–¢æ•°ãªã—
 	public static final int WND_NONE = 0;
-	//ƒnƒ~ƒ“ƒO
+	//ãƒãƒŸãƒ³ã‚°
 	public static final int WND_HAMMING  = 1;
-	//ƒuƒ‰ƒbƒNƒ}ƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ãƒãƒ³
 	public static final int WND_BLKMAN  = 2;
-	//ƒnƒ“
+	//ãƒãƒ³
 	public static final int WND_HANN = 3;				
-	/** ‘‹ŠÖ” */
+	/** çª“é–¢æ•° */
 	public int wndFnc = WND_NONE; 
 	
-	/** ‰ñ“]ˆöq—p”z—ñ */
+	/** å›è»¢å› å­ç”¨é…åˆ— */
 	private double[] wnfft;
-	/** ƒrƒbƒg”½“]—p”z—ñ */
+	/** ãƒ“ãƒƒãƒˆåè»¢ç”¨é…åˆ— */
 	private int[] brfft;
 
-	/** “ü—Í—pÀ”*/
+	/** å…¥åŠ›ç”¨å®Ÿæ•°*/
 	private double[] xr;
-	/** “ü—Í—p‹•”*/
+	/** å…¥åŠ›ç”¨è™šæ•°*/
 	private double[] xi;
 		
-	/** o—Í—pÀ”*/
+	/** å‡ºåŠ›ç”¨å®Ÿæ•°*/
 	private double[] yr;
-	/** o—Í—pÀ”*/
+	/** å‡ºåŠ›ç”¨å®Ÿæ•°*/
 	private double[] yi;
-	/** U•ƒXƒyƒNƒgƒ‹*/
+	/** æŒ¯å¹…ã‚¹ãƒšã‚¯ãƒˆãƒ«*/
 	private double[] as;
 	
 	
 	
 	/**
-	 *ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^ 
+	 *ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ 
 	 */
 	public MyFFT() {
 		this(DEFAULT_N);
@@ -52,7 +52,7 @@ public class MyFFT extends Thread{
 	}
 	
 	/**
-	 *ƒRƒ“ƒXƒgƒ‰ƒNƒ^ 
+	 *ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ 
 	 */
 	public MyFFT(int n) {
 		this.n = n;
@@ -66,16 +66,16 @@ public class MyFFT extends Thread{
 		yi = new double[n];
 		as = new double[n];
 		
-		//“ü—Í’lAo—Í’l—p”z—ñ‚ğ‰Šú‰»
+		//å…¥åŠ›å€¤ã€å‡ºåŠ›å€¤ç”¨é…åˆ—ã‚’åˆæœŸåŒ–
 		initFFTbuf();
-		//‰ñ“]ˆöqƒe[ƒuƒ‹‚Ìì¬
+		//å›è»¢å› å­ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 		fftTable();
-		//ƒrƒbƒg”½“]ƒe[ƒuƒ‹‚Ìì¬
+		//ãƒ“ãƒƒãƒˆåè»¢ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 		bitReverseTable();
 	}		
 	
 	/**
-	 * “ü—Í’lAo—Í’l—p”z—ñ‚ğ‰Šú‰» 
+	 * å…¥åŠ›å€¤ã€å‡ºåŠ›å€¤ç”¨é…åˆ—ã‚’åˆæœŸåŒ– 
 	 */
 	public void initFFTbuf(){
 		for(int i = 0; i < xr.length ; i++){
@@ -97,31 +97,31 @@ public class MyFFT extends Thread{
 	
 
 	/**
-	 * FFTƒe[ƒuƒ‹‚Ìì¬
+	 * FFTãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 	 */
 	public void fftTable(){			
 
-		//”z—ñ‰Šú‰»
+		//é…åˆ—åˆæœŸåŒ–
 		for(int i = 0; i < wnfft.length ; i++){
 			wnfft[i] = 0;
 		}
 		
-		//•ªŠ„‚·‚éŠp“x
+		//åˆ†å‰²ã™ã‚‹è§’åº¦
 		double arg = 2*Math.PI/n;
 		
-		//COSƒe[ƒuƒ‹‚Ìì¬
+		//COSãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 		for(int i = 0; i < wnfft.length ; i++){
 			wnfft[i] = Math.cos(arg*i);			
 		}		
 	}
 	
 	/**
-	 * ƒrƒbƒgƒŠƒo[ƒXƒe[ƒuƒ‹‚Ìì¬
+	 * ãƒ“ãƒƒãƒˆãƒªãƒãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 	 */
 	public void bitReverseTable(){		
 		int nHalf = n/2;
 
-		//”z—ñ‰Šú‰»
+		//é…åˆ—åˆæœŸåŒ–
 		for(int i = 0; i < brfft.length ; i++){
 			brfft[i] = 0;
 		}
@@ -134,20 +134,20 @@ public class MyFFT extends Thread{
 		}
 	}
 	/**
-	 * —£Uü”g”•ÏŠ·
+	 * é›¢æ•£å‘¨æ³¢æ•°å¤‰æ›
 	 */
 	public void dfft_time(double dt,double df){
 		
 		double yrr=0,yii=0;
 		//System.out.println("dt="+dt);
 		/*
-		//“ü—Íƒf[ƒ^‚ğƒRƒs[(ƒfƒB[ƒvƒRƒs[)
+		//å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼(ãƒ‡ã‚£ãƒ¼ãƒ—ã‚³ãƒ”ãƒ¼)
 		for(int i = 0; i < xr.length ; i++){
 			yr[i] = xr[i];
 			yi[i] = 0;
 		}
 		*/
-		//‘‹ŠÖ”‚Ì“K—p
+		//çª“é–¢æ•°ã®é©ç”¨
 		window(yr);
 		//System.out.println("dt="+dt);
 		for(int i=0; i<xr.length; i++){
@@ -164,17 +164,17 @@ public class MyFFT extends Thread{
 	}
 	
 	/**
-	 * ŠÔŠÔˆø‚«FFT 
+	 * æ™‚é–“é–“å¼•ãFFT 
 	 */
 	public void fft_time(){		
 
-		//“ü—Íƒf[ƒ^‚ğƒRƒs[(ƒfƒB[ƒvƒRƒs[)
+		//å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼(ãƒ‡ã‚£ãƒ¼ãƒ—ã‚³ãƒ”ãƒ¼)
 		for(int i = 0; i < xr.length ; i++){
 			yr[i] = xr[i];
 			yi[i] = 0;
 		}
 		
-		//‘‹ŠÖ”‚Ì“K—p
+		//çª“é–¢æ•°ã®é©ç”¨
 		window(yr);
 		
 		double xtmpr,xtmpi;
@@ -182,7 +182,7 @@ public class MyFFT extends Thread{
 		int step;
 		double arg;
 				
-		//ŠÔŠÔˆø‚«‚Ì‚½‚ßƒf[ƒ^‚ğ”½“]
+		//æ™‚é–“é–“å¼•ãã®ãŸã‚ãƒ‡ãƒ¼ã‚¿ã‚’åè»¢
 		for(int j=0 ; j < n ; j++){
 			if(j<brfft[j]){
 				double tmp = 0;
@@ -235,21 +235,21 @@ public class MyFFT extends Thread{
 	}
 	
 	/**
-	 * ‘‹ŠÖ”‚Ì“K—p
+	 * çª“é–¢æ•°ã®é©ç”¨
 	 */
 	public void window(double[] array){
 		double weight = 0;
 		switch (wndFnc) {		
-		case WND_NONE:   //‚È‚µ
+		case WND_NONE:   //ãªã—
 			return;						
-		case WND_HAMMING://ƒnƒ~ƒ“ƒO
+		case WND_HAMMING://ãƒãƒŸãƒ³ã‚°
 			for(int i = 0; i < array.length ; i++){
 				weight = 0.54 - 0.46 * Math.cos(2*Math.PI*i/(array.length - 1));				
 				array[i] = array[i]*weight;			 
 			}
 			System.out.println("hamming");
 			break;
-		case WND_BLKMAN: //ƒuƒ‰ƒbƒNƒ}ƒ“
+		case WND_BLKMAN: //ãƒ–ãƒ©ãƒƒã‚¯ãƒãƒ³
 			for(int i = 0; i < array.length ; i++){
 				weight = 0.42 - 0.5 * Math.cos(2*Math.PI*i/(array.length - 1)) 
 				        +0.08 * Math.cos(4*Math.PI*i/(array.length - 1));			
@@ -257,7 +257,7 @@ public class MyFFT extends Thread{
 			}
 			System.out.println("blackman");
 			break;
-		case WND_HANN:   //ƒnƒ“
+		case WND_HANN:   //ãƒãƒ³
 			for(int i = 0; i < array.length ; i++){
 				weight = 0.5 - 0.5 * Math.cos(2*Math.PI*i/(array.length - 1));						
 				array[i] = array[i]*weight;			 
@@ -271,11 +271,11 @@ public class MyFFT extends Thread{
 	}
 	
 	/**
-	 * “ü—ÍM†‚ğXV‚·‚é
-	 * @param val V‚½‚É“ü‚ê‚é“ü—ÍM†
+	 * å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°ã™ã‚‹
+	 * @param val æ–°ãŸã«å…¥ã‚Œã‚‹å…¥åŠ›ä¿¡å·
 	 */
 	public void putInput(double val){
-		//ƒVƒtƒg
+		//ã‚·ãƒ•ãƒˆ
 		for(int i = xr.length - 1; i > 0 ;i--){
 			xr[i] = xr[i - 1];
 		}
@@ -283,15 +283,15 @@ public class MyFFT extends Thread{
 	}
 	
 	/**
-	 * U•ƒXƒyƒNƒgƒ‹‚Ì”z—ñ‚ğ“¾‚é
-	 * @return U•ƒXƒyƒNƒgƒ‹‚Ì”z—ñ
+	 * æŒ¯å¹…ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®é…åˆ—ã‚’å¾—ã‚‹
+	 * @return æŒ¯å¹…ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®é…åˆ—
 	 */
 	public double[] getASpectrum(){
 		//FFT
 		fft_time();
 		
 		for(int i = 0; i < as.length ; i++){
-			//U•ƒXƒyƒNƒgƒ‹‚ÌŒvZ
+			//æŒ¯å¹…ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®è¨ˆç®—
 			as[i] = Math.sqrt(yr[i]*yr[i] + yi[i]*yi[i]);
 		}
 		
@@ -303,7 +303,7 @@ public class MyFFT extends Thread{
 		dfft_time(dt, df);
 		
 		for(int i = 0; i < as.length ; i++){
-			//U•ƒXƒyƒNƒgƒ‹‚ÌŒvZ
+			//æŒ¯å¹…ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®è¨ˆç®—
 			as[i] = Math.sqrt(yr[i]*yr[i] + yi[i]*yi[i]);
 		}
 		
@@ -311,7 +311,7 @@ public class MyFFT extends Thread{
 	}
 	
 	/**
-	 * FFT‚Ì¸“xN‚ğ•Ô‚·
+	 * FFTã®ç²¾åº¦Nã‚’è¿”ã™
 	 * @return
 	 */
 	public int getN(){
@@ -319,8 +319,8 @@ public class MyFFT extends Thread{
 	}
 	
 	/**
-	 * ‘‹ŠÖ”‚Ìİ’è
-	 * @param wndFnc ‘‹ŠÖ”’è”
+	 * çª“é–¢æ•°ã®è¨­å®š
+	 * @param wndFnc çª“é–¢æ•°å®šæ•°
 	 */
 	public void setWndFnc(int wndFnc){
 		this.wndFnc = wndFnc;	

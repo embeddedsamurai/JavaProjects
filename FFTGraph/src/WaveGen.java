@@ -6,15 +6,15 @@
 public interface WaveGen {
 	
 	/**
-	 * ‰Šú‰»
-	 * @param freq ¶¬‚·‚éM†‚Ìü”g”
-	 * @param sample ƒTƒ“ƒvƒŠƒ“ƒOü”g”
+	 * åˆæœŸåŒ–
+	 * @param freq ç”Ÿæˆã™ã‚‹ä¿¡å·ã®å‘¨æ³¢æ•°
+	 * @param sample ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 	 */
 	abstract public void init(double freq,double sample);
 	
 	/**
-	 * Ÿ‚ÌM†‚ğ“¾‚é
-	 * @return Ÿ‚ÌM†
+	 * æ¬¡ã®ä¿¡å·ã‚’å¾—ã‚‹
+	 * @return æ¬¡ã®ä¿¡å·
 	 */
 	abstract public double nextWave();
 }

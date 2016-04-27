@@ -5,25 +5,25 @@
 
 public class SinGen implements WaveGen{
 	
-	//ƒTƒCƒ“”g¶¬—p
+	//ã‚µã‚¤ãƒ³æ³¢ç”Ÿæˆç”¨
 	private double[] y = new double[3];
 	private double coffSingen = 0;
 	private double a1 = 0.0;
 	private double a2 = 0.0;
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param freq ¶¬‚·‚éƒTƒCƒ“”g‚Ìü”g”
-	 * @param sample ƒTƒ“ƒvƒŠƒ“ƒOü”g”
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param freq ç”Ÿæˆã™ã‚‹ã‚µã‚¤ãƒ³æ³¢ã®å‘¨æ³¢æ•°
+	 * @param sample ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 	 */
 	public SinGen(double freq,double sample) {
 		init(freq, sample);
 	}
 	
 	/**
-	 * ƒTƒCƒ“”g¶¬‚Ì‚½‚ß‚Ì•Ï”‚Ì‰Šú‰»ˆ—‚ğ‚·‚é
-	 * @param freq ¶¬‚·‚éƒTƒCƒ“”g‚Ìü”g”
-	 * @param sample ƒTƒ“ƒvƒŠƒ“ƒOü”g”
+	 * ã‚µã‚¤ãƒ³æ³¢ç”Ÿæˆã®ãŸã‚ã®å¤‰æ•°ã®åˆæœŸåŒ–å‡¦ç†ã‚’ã™ã‚‹
+	 * @param freq ç”Ÿæˆã™ã‚‹ã‚µã‚¤ãƒ³æ³¢ã®å‘¨æ³¢æ•°
+	 * @param sample ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 	 */
 	public void init(double freq,double sample){
 		coffSingen = (2 * Math.PI * (double)freq) / (double)sample;
@@ -37,11 +37,11 @@ public class SinGen implements WaveGen{
 	}
 
 	/**
-	 * ƒTƒCƒ“”g¶¬—pŠÖ”
+	 * ã‚µã‚¤ãƒ³æ³¢ç”Ÿæˆç”¨é–¢æ•°
 	 */
 	public double nextWave(){
 		y[0] = a1 * y[1] + a2 * y[2];
-		//ƒVƒtƒg
+		//ã‚·ãƒ•ãƒˆ
 		y[2] = y[1];
 		y[1] = y[0];
 

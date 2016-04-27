@@ -14,75 +14,75 @@ import java.util.*;
 
 public class MyCanvas{
 
-	/** Applet ƒRƒs[—p */
+	/** Applet ã‚³ãƒ”ãƒ¼ç”¨ */
 	private Applet  mApplet;
 	public Graphics back;
 	
-	// ƒ†[ƒUÀ•W‚Ì”ÍˆÍ iƒfƒtƒHƒ‹ƒg‚Í[-1,1]‚˜[-1,1]j
-	protected double[] userMinx;  //ƒ†[ƒUÀ•WŒn‚ÌX²‚ÌÅ¬’l
-	protected double[] userMaxx;  //ƒ†[ƒUÀ•WŒn‚ÌX²‚ÌÅ‘å’l
-	protected double[] userMiny;  //ƒ†[ƒUÀ•WŒn‚ÌY²‚ÌÅ¬’l
-	protected double[] userMaxy;  //ƒ†[ƒUÀ•WŒn‚ÌY²‚ÌÅ‘å’l
+	// ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã®ç¯„å›² ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯[-1,1]ï½˜[-1,1]ï¼‰
+	protected double[] userMinx;  //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã®Xè»¸ã®æœ€å°å€¤
+	protected double[] userMaxx;  //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã®Xè»¸ã®æœ€å¤§å€¤
+	protected double[] userMiny;  //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã®Yè»¸ã®æœ€å°å€¤
+	protected double[] userMaxy;  //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã®Yè»¸ã®æœ€å¤§å€¤
 	
-	// ƒrƒ…[ƒ|[ƒg‚Ì”ÍˆÍ@iƒfƒtƒHƒ‹ƒg‚Í[0,1]x[0,1]j
-	protected double[] viewMinx;  //ƒrƒ…[ƒ|[ƒg‚ÌX²‚ÌÅ¬’l
-	protected double[] viewMaxx;  //ƒrƒ…[ƒ|[ƒg‚ÌX²‚ÌÅ‘å’l
-	protected double[] viewMiny;  //ƒrƒ…[ƒ|[ƒg‚ÌY²‚ÌÅ¬’l
-	protected double[] viewMaxy;  //ƒrƒ…[ƒ|[ƒg‚ÌY²‚ÌÅ‘å’l
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®ç¯„å›²ã€€ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯[0,1]x[0,1]ï¼‰
+	protected double[] viewMinx;  //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Xè»¸ã®æœ€å°å€¤
+	protected double[] viewMaxx;  //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Xè»¸ã®æœ€å¤§å€¤
+	protected double[] viewMiny;  //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Yè»¸ã®æœ€å°å€¤
+	protected double[] viewMaxy;  //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Yè»¸ã®æœ€å¤§å€¤
 	
-	final static int DefaultViewportMax = 256;      //ƒfƒtƒHƒ‹ƒg‚Ìƒrƒ…[ƒ|[ƒg”
-	protected int viewportMax = DefaultViewportMax; //ƒrƒ…[ƒ|[ƒg‚Ì”
-	protected int viewportNum = 0;                  //Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚Ì”
-	protected int userWinMax = 10;                  //ƒ†[ƒUƒEƒBƒ“ƒhƒE‚Ì‘”
-	protected int userWinNum = 0;                   //Œ»İ‚Ìƒ†[ƒUƒEƒBƒ“ƒhƒE‚Ì”
+	final static int DefaultViewportMax = 256;      //ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆæ•°
+	protected int viewportMax = DefaultViewportMax; //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æ•°
+	protected int viewportNum = 0;                  //ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æ•°
+	protected int userWinMax = 10;                  //ãƒ¦ãƒ¼ã‚¶ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç·æ•°
+	protected int userWinNum = 0;                   //ç¾åœ¨ã®ãƒ¦ãƒ¼ã‚¶ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 	
-	//ƒNƒŠƒbƒN‚µ‚½ƒrƒ…[ƒ|[ƒg‚Ì”Ô†‚ğ•Û‘¶‚·‚é
+	//ã‚¯ãƒªãƒƒã‚¯ã—ãŸãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®ç•ªå·ã‚’ä¿å­˜ã™ã‚‹
 	public int stViewPt=0;
 	public int endViewPt=0;
 	
-	// ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY
-	final static int DefaultWindowSize = 256;//ƒfƒtƒHƒ‹ƒg‚ÌƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY
-	protected int windowWidth = DefaultWindowSize;//ƒEƒBƒ“ƒhƒE‚Ì‰¡•
-	protected int windowHeight = DefaultWindowSize;//ƒEƒBƒ“ƒhƒE‚Ìc•
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚º
+	final static int DefaultWindowSize = 256;//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚º
+	protected int windowWidth = DefaultWindowSize;//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+	protected int windowHeight = DefaultWindowSize;//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 
-	// MoveTo(x,y)‚ÆLineTo(x,y)‚ÌƒTƒ|[ƒg—p
-	protected double lastx=0;//’¼‘O‚ÌX’l
-	protected double lasty=0;//’¼‘O‚ÌY’l
+	// MoveTo(x,y)ã¨LineTo(x,y)ã®ã‚µãƒãƒ¼ãƒˆç”¨
+	protected double lastx=0;//ç›´å‰ã®Xå€¤
+	protected double lasty=0;//ç›´å‰ã®Yå€¤
 
-	// ƒtƒHƒ“ƒg—p
+	// ãƒ•ã‚©ãƒ³ãƒˆç”¨
 	final static int DefaultFontSize = 12;
 
 	
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Å‚Í viewportMax = 256
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ã¯ viewportMax = 256
 	public MyCanvas(FFTGraph applet){
 		
 		this.mApplet = applet;
 		this.back    = applet.back;
 		
-		viewportMax = DefaultViewportMax; //ƒrƒ…[ƒ|[ƒg‚Ì”
+		viewportMax = DefaultViewportMax; //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æ•°
 		 
-		//ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY/////////
-		windowWidth = applet.getSize().width;  //ƒEƒBƒ“ƒhƒE‚Ì‰¡•
-		windowHeight = applet.getSize().height; //ƒEƒBƒ“ƒhƒE‚Ìc•
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚º/////////
+		windowWidth = applet.getSize().width;  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+		windowHeight = applet.getSize().height; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 		
-		createViewport(DefaultViewportMax);//ƒrƒ…[ƒ|[ƒg‚ÌŠ„‚è“–‚Ä
+		createViewport(DefaultViewportMax);//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®å‰²ã‚Šå½“ã¦
 	    createUserWindow(5);
 	}
 	
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	public MyCanvas(FFTGraph applet,int width,int height)
 	{
 
 	  this.mApplet = applet;
 	  this.back    = applet.back;
 		
-	  viewportMax = DefaultViewportMax; //ƒrƒ…[ƒ|[ƒg‚Ì”
+	  viewportMax = DefaultViewportMax; //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æ•°
 
-	  //ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY/////////
-	  windowWidth  = width;               //ƒEƒBƒ“ƒhƒE‚Ì‰¡•
-	  windowHeight = height;              //ƒEƒBƒ“ƒhƒE‚Ìc•
-	  createViewport(DefaultViewportMax); //ƒrƒ…[ƒ|[ƒg‚ÌŠ„‚è“–‚Ä
+	  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚º/////////
+	  windowWidth  = width;               //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+	  windowHeight = height;              //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
+	  createViewport(DefaultViewportMax); //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®å‰²ã‚Šå½“ã¦
 	  createUserWindow(5);
 	  
 	  //System.out.println("windowWidth"+windowWidth+"windowHeight"+windowHeight);
@@ -91,47 +91,47 @@ public class MyCanvas{
 
 	public void setWindow(int width,int height)
 	{
-	  windowWidth  = width;               //ƒEƒBƒ“ƒhƒE‚Ì‰¡•
-	  windowHeight = height;              //ƒEƒBƒ“ƒhƒE‚Ìc•
+	  windowWidth  = width;               //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+	  windowHeight = height;              //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 	}
 	
 	private void createViewport(int max){
 		
-		viewportMax = max;//ƒrƒ…[ƒ|[ƒg”‚ÌÅ‘å’l‚ğİ’è
-		viewMinx = new double[viewportMax];//ƒrƒ…[ƒ|[ƒg‚ÌX²‚ÌÅ¬’l”z—ñ
-		viewMaxx = new double[viewportMax];//ƒrƒ…[ƒ|[ƒg‚ÌX²‚ÌÅ‘å’l”z—ñ
-		viewMiny = new double[viewportMax];//ƒrƒ…[ƒ|[ƒg‚ÌY²‚ÌÅ¬’l”z—ñ
-		viewMaxy = new double[viewportMax];//ƒrƒ…[ƒ|[ƒg‚ÌY²‚ÌÅ‘å’l”z—ñ
-		viewMinx[0] = viewMiny[0] = 0.0;//ƒrƒ…[ƒ|[ƒg‚ÌÅ¬’l‚Í‚O
-		viewMaxx[0] = viewMaxy[0] = 1.0;//ƒrƒ…[ƒ|[ƒg‚ÌÅ‘å’l‚Í‚P
-		viewportNum = 1;//ƒrƒ…[ƒ|[ƒg‚ÌŒ»İƒCƒ“ƒfƒbƒNƒX‚ğ‚P‚Æ‚·‚é
+		viewportMax = max;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆæ•°ã®æœ€å¤§å€¤ã‚’è¨­å®š
+		viewMinx = new double[viewportMax];//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Xè»¸ã®æœ€å°å€¤é…åˆ—
+		viewMaxx = new double[viewportMax];//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Xè»¸ã®æœ€å¤§å€¤é…åˆ—
+		viewMiny = new double[viewportMax];//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Yè»¸ã®æœ€å°å€¤é…åˆ—
+		viewMaxy = new double[viewportMax];//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Yè»¸ã®æœ€å¤§å€¤é…åˆ—
+		viewMinx[0] = viewMiny[0] = 0.0;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æœ€å°å€¤ã¯ï¼
+		viewMaxx[0] = viewMaxy[0] = 1.0;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æœ€å¤§å€¤ã¯ï¼‘
+		viewportNum = 1;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®ç¾åœ¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ï¼‘ã¨ã™ã‚‹
 	}
 	
 	void createUserWindow(int max)
 	{
-	  userWinMax = max;   //ƒ†[ƒUÀ•WŒn‚Ì”‚ÌÅ‘å’l‚ğİ’è
-	  userMinx = new double[userWinMax]; //ƒ†[ƒUÀ•W‚Ìx²‚ÌÅ¬’l”z—ñ
-	  userMaxx = new double[userWinMax]; //ƒ†[ƒUÀ•W‚Ìx²‚ÌÅ‘å’l”z—ñ
-	  userMiny = new double[userWinMax]; //ƒ†[ƒUÀ•W‚Ìy²‚ÌÅ¬’l”z—ñ
-	  userMaxy = new double[userWinMax]; //ƒ†[ƒUÀ•W‚Ìy²‚ÌÅ‘å’l”z—ñ
+	  userWinMax = max;   //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã®æ•°ã®æœ€å¤§å€¤ã‚’è¨­å®š
+	  userMinx = new double[userWinMax]; //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã®xè»¸ã®æœ€å°å€¤é…åˆ—
+	  userMaxx = new double[userWinMax]; //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã®xè»¸ã®æœ€å¤§å€¤é…åˆ—
+	  userMiny = new double[userWinMax]; //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã®yè»¸ã®æœ€å°å€¤é…åˆ—
+	  userMaxy = new double[userWinMax]; //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã®yè»¸ã®æœ€å¤§å€¤é…åˆ—
 	  userMinx[0] = userMiny[0] = -100;
 	  userMaxx[0] = userMaxy[0] = 100;
-	  userWinNum = 1; //ƒ†[ƒUÀ•W‚ÌŒ»İƒCƒ“ƒfƒbƒNƒX‚ğ1‚Æ‚·‚éB
+	  userWinNum = 1; //ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã®ç¾åœ¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’1ã¨ã™ã‚‹ã€‚
 
 	}
 	
-	//ƒEƒBƒ“ƒhƒE‚Ì‰¡•
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
 	public int getWidth(){ return windowWidth; }
-	//ƒEƒBƒ“ƒhƒE‚Ìc•
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 	public int getHeight(){	return windowHeight; }
 	
 	
-	// ƒ†[ƒUÀ•WŒn‚Ì”ÍˆÍ‚Ìİ’è
+	// ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã®ç¯„å›²ã®è¨­å®š
 	public void setUserWindow(double minx, double maxx, double miny, double maxy){
-		  userMinx[userWinNum] = minx; //ƒEƒBƒ“ƒhƒE‚Ìx²‚ÌÅ¬’lİ’è
-		  userMaxx[userWinNum] = maxx; //ƒEƒBƒ“ƒhƒE‚Ìx²‚ÌÅ‘å’lİ’è
-		  userMiny[userWinNum] = miny; //ƒEƒBƒ“ƒhƒE‚Ìy²‚ÌÅ¬’lİ’è
-		  userMaxy[userWinNum] = maxy; //ƒEƒBƒ“ƒhƒE‚Ìy²‚ÌÅ‘å’lİ’è
+		  userMinx[userWinNum] = minx; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®xè»¸ã®æœ€å°å€¤è¨­å®š
+		  userMaxx[userWinNum] = maxx; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®xè»¸ã®æœ€å¤§å€¤è¨­å®š
+		  userMiny[userWinNum] = miny; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®yè»¸ã®æœ€å°å€¤è¨­å®š
+		  userMaxy[userWinNum] = maxy; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®yè»¸ã®æœ€å¤§å€¤è¨­å®š
 		  
 		  userWinNum++;
 	}
@@ -152,57 +152,57 @@ public class MyCanvas{
 	
 	public int getWindowPosition(double[] minx,double[] maxx,double[] miny,double[] maxy,int num){
 		
-		minx[0] = getX(minx[0],num);//Java AWTÀ•W’l‚É•ÏŠ·
-		miny[0] = getY(miny[0],num);//Java AWTÀ•W’l‚É•ÏŠ·
-		maxx[0] = getX(maxx[0],num);//Java AWTÀ•W’l‚É•ÏŠ·
-		maxy[0] = getY(maxy[0],num);//Java AWTÀ•W’l‚É•ÏŠ·
+		minx[0] = getX(minx[0],num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		miny[0] = getY(miny[0],num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		maxx[0] = getX(maxx[0],num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		maxy[0] = getY(maxy[0],num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 		
 		return 0;
 	}
 	
 	public void changeUserWindow(double minx, double maxx, double miny, double maxy,int num)
 	{
-		  userMinx[num] = minx; //ƒEƒBƒ“ƒhƒE‚Ìx²‚ÌÅ¬’lİ’è
-		  userMaxx[num] = maxx; //ƒEƒBƒ“ƒhƒE‚Ìx²‚ÌÅ‘å’lİ’è
-		  userMiny[num] = miny; //ƒEƒBƒ“ƒhƒE‚Ìy²‚ÌÅ¬’lİ’è
-		  userMaxy[num] = maxy; //ƒEƒBƒ“ƒhƒE‚Ìy²‚ÌÅ‘å’lİ’è
+		  userMinx[num] = minx; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®xè»¸ã®æœ€å°å€¤è¨­å®š
+		  userMaxx[num] = maxx; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®xè»¸ã®æœ€å¤§å€¤è¨­å®š
+		  userMiny[num] = miny; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®yè»¸ã®æœ€å°å€¤è¨­å®š
+		  userMaxy[num] = maxy; //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®yè»¸ã®æœ€å¤§å€¤è¨­å®š
 	}
 	
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’èiƒNƒŠƒbƒsƒ“ƒO‚·‚éj
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®šï¼ˆã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹ï¼‰
 	public void setViewport2(double minx, double maxx, double miny, double maxy){
-		viewMinx[viewportNum] = minx;//Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚ÌX²‚ÌÅ¬’l
-		viewMaxx[viewportNum] = maxx;//Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚ÌX²‚ÌÅ‘å’l
-		viewMiny[viewportNum] = miny;//Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚ÌY²‚ÌÅ¬’l
-		viewMaxy[viewportNum] = maxy;//Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚ÌY²‚ÌÅ‘å’l
-		viewportNum++;//ƒrƒ…[ƒ|[ƒg‚Ì”‚ğ‘‰Á‚³‚¹‚é
-		setClip(minx,miny,maxx,maxy,true);//ƒrƒ…[ƒ|[ƒg‚ÅƒNƒŠƒbƒsƒ“ƒO‚ğİ’è
+		viewMinx[viewportNum] = minx;//ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Xè»¸ã®æœ€å°å€¤
+		viewMaxx[viewportNum] = maxx;//ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Xè»¸ã®æœ€å¤§å€¤
+		viewMiny[viewportNum] = miny;//ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Yè»¸ã®æœ€å°å€¤
+		viewMaxy[viewportNum] = maxy;//ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Yè»¸ã®æœ€å¤§å€¤
+		viewportNum++;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æ•°ã‚’å¢—åŠ ã•ã›ã‚‹
+		setClip(minx,miny,maxx,maxy,true);//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã§ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚’è¨­å®š
 	}
 	
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’èiƒNƒŠƒbƒsƒ“ƒO‚·‚éj
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®šï¼ˆã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹ï¼‰
 	public void setViewport(double minx, double maxx, double miny, double maxy){
-		viewMinx[viewportNum] = minx;//Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚ÌX²‚ÌÅ¬’l
-		viewMaxx[viewportNum] = maxx;//Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚ÌX²‚ÌÅ‘å’l
-		viewMiny[viewportNum] = miny;//Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚ÌY²‚ÌÅ¬’l
-		viewMaxy[viewportNum] = maxy;//Œ»İ‚Ìƒrƒ…[ƒ|[ƒg‚ÌY²‚ÌÅ‘å’l
-		viewportNum++;//ƒrƒ…[ƒ|[ƒg‚Ì”‚ğ‘‰Á‚³‚¹‚é
+		viewMinx[viewportNum] = minx;//ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Xè»¸ã®æœ€å°å€¤
+		viewMaxx[viewportNum] = maxx;//ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Xè»¸ã®æœ€å¤§å€¤
+		viewMiny[viewportNum] = miny;//ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Yè»¸ã®æœ€å°å€¤
+		viewMaxy[viewportNum] = maxy;//ç¾åœ¨ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®Yè»¸ã®æœ€å¤§å€¤
+		viewportNum++;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æ•°ã‚’å¢—åŠ ã•ã›ã‚‹
 	}
     
-	// ƒrƒ…[ƒ|[ƒg‚ÌƒŠƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®ãƒªã‚»ãƒƒãƒˆ
 	public void resetViewport(){
-		viewMinx[0] = viewMiny[0] = 0.0;//ƒrƒ…[ƒ|[ƒg‚ÌÅ¬’l‚O
-		viewMaxx[0] = viewMaxy[0] = 1.0;//ƒrƒ…[ƒ|[ƒg‚ÌÅ‘å’l‚P
-		viewportNum = 1;//ƒrƒ…[ƒ|[ƒg‚Ì”‚ğ‚P‚Æ‚·‚é
+		viewMinx[0] = viewMiny[0] = 0.0;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æœ€å°å€¤ï¼
+		viewMaxx[0] = viewMaxy[0] = 1.0;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æœ€å¤§å€¤ï¼‘
+		viewportNum = 1;//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æ•°ã‚’ï¼‘ã¨ã™ã‚‹
 	}
 	
 	/**************************************************************/
-	/*          ƒ†[ƒUÀ•W‚©‚çWIN/JavaÀ•W‚ğ“¾‚éƒƒ\ƒbƒh          */
-	/*          ƒvƒƒOƒ‰ƒ}‚Í‚±‚±‚³‚¦Œ©‚¦‚Ä‚ê‚Î‚æ‚¢                */
+	/*          ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã‹ã‚‰WIN/Javaåº§æ¨™ã‚’å¾—ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰          */
+	/*          ãƒ—ãƒ­ã‚°ãƒ©ãƒã¯ã“ã“ã•ãˆè¦‹ãˆã¦ã‚Œã°ã‚ˆã„                */
 	/**************************************************************/
 	
 
 	
 	
-	// Dimension‚ğ“¾‚éƒƒ\ƒbƒh
+	// Dimensionã‚’å¾—ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
 	public int getDimensionX(double w,int num){
 		double x = viewMaxx[num] - viewMinx[num];
 		x *= windowWidth * w / (userMaxx[num]-userMinx[num]);
@@ -214,19 +214,19 @@ public class MyCanvas{
 		return ((int)Math.abs(y));
 	}
 	
-	// ƒ†[ƒUÀ•W‚©‚çJava AWTÀ•W‚ğ“¾‚éƒƒ\ƒbƒh
+	// ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã‹ã‚‰Java AWTåº§æ¨™ã‚’å¾—ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
 	public int getX(double x,int num){
-		double xx = viewX(x,num);//x‚ğƒrƒ…[ƒ|[ƒg‚Éƒ}ƒbƒsƒ“ƒO
-		int ix = getIntX(xx);//ƒrƒ…[ƒ|[ƒg‚ğJavaÀ•WŒn‚Éƒ}ƒbƒsƒ“ƒO
+		double xx = viewX(x,num);//xã‚’ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã«ãƒãƒƒãƒ”ãƒ³ã‚°
+		int ix = getIntX(xx);//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’Javaåº§æ¨™ç³»ã«ãƒãƒƒãƒ”ãƒ³ã‚°
 		return ix;
 	}
 	public int getY(double y,int num){
-		double yy = viewY(y,num);//y‚ğƒrƒ…[ƒ|[ƒg‚Éƒ}ƒbƒsƒ“ƒO
-		int iy = getIntY(yy);//ƒrƒ…[ƒ|[ƒg‚ğJavaÀ•WŒn‚Éƒ}ƒbƒsƒ“ƒO
+		double yy = viewY(y,num);//yã‚’ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã«ãƒãƒƒãƒ”ãƒ³ã‚°
+		int iy = getIntY(yy);//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’Javaåº§æ¨™ç³»ã«ãƒãƒƒãƒ”ãƒ³ã‚°
 		return iy;
 	}
 	
-	//ƒ†[ƒUÀ•W‚ğƒrƒ…[ƒ|[ƒgÀ•W‚Éƒ}ƒbƒsƒ“ƒO‚·‚éƒƒ\ƒbƒh
+	//ãƒ¦ãƒ¼ã‚¶åº§æ¨™ã‚’ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆåº§æ¨™ã«ãƒãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
 	public double viewX(double x,int num)
 	{
 	  double s = ( x - userMinx[num])/(userMaxx[num] - userMinx[num]);
@@ -248,28 +248,28 @@ public class MyCanvas{
 	  return t;
 	}
 	
-	// ƒrƒ…[ƒ|[ƒgÀ•W‚ğJava AWTÀ•W‚Éƒ}ƒbƒsƒ“ƒO‚·‚éƒƒ\ƒbƒh
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆåº§æ¨™ã‚’Java AWTåº§æ¨™ã«ãƒãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
 	public int getIntX(double x){
-		return (int)(windowWidth * x);//ƒEƒBƒ“ƒhƒE‚Ì‰¡•”{‚·‚é
+		return (int)(windowWidth * x);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…å€ã™ã‚‹
 	}
 	public int getIntY(double y){
-		return (int)(windowHeight * (1-y));//ƒEƒBƒ“ƒhƒE‚Ìc•”{‚·‚é
+		return (int)(windowHeight * (1-y));//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…å€ã™ã‚‹
 	}
 	
-	// ü•ª‚Ì•`‰æ
+	// ç·šåˆ†ã®æç”»
 	public void drawLine(double x1, double y1, double x2, double y2,int num){
-		int ix1 = getX(x1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iy1 = getY(y1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int ix2 = getX(x2,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iy2 = getY(y2,num);//Java AWTÀ•W’l‚É•ÏŠ·
+		int ix1 = getX(x1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iy1 = getY(y1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int ix2 = getX(x2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iy2 = getY(y2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 		back.drawLine(ix1,iy1,ix2,iy2);
 		//g.drawLine(0,0,500,500);
 	}
 	/************************************************************************/
 
 	
-	// ‹tƒ}ƒbƒsƒ“ƒO
-	// Java AWTÀ•W‚©‚çƒrƒ…[ƒ|[ƒg‚É‹tƒ}ƒbƒsƒ“ƒO
+	// é€†ãƒãƒƒãƒ”ãƒ³ã‚°
+	// Java AWTåº§æ¨™ã‹ã‚‰ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã«é€†ãƒãƒƒãƒ”ãƒ³ã‚°
 	public int GetViewPort( int ix,int iy )
 	{
 		double s = (double) (ix) / (double)windowWidth;
@@ -288,12 +288,12 @@ public class MyCanvas{
 	}
 	
 	
-	//ƒrƒ…[ƒ|[ƒg‚©‚çƒ†[ƒUÀ•WŒn‚É‹tƒ}ƒbƒsƒ“ƒO(xÀ•W)
+	//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‹ã‚‰ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã«é€†ãƒãƒƒãƒ”ãƒ³ã‚°(xåº§æ¨™)
 	public double GetUserX(int ix,int v)
 	{
-		//windowsÀ•W‚©‚çƒrƒ…[ƒ|[ƒg‚Ö
+		//windowsåº§æ¨™ã‹ã‚‰ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã¸
 		double xv = (double)ix / (double)windowWidth;
-		//ƒrƒ…[ƒ|[ƒg‚©‚çƒ†[ƒUÀ•WŒn‚É‹tƒ}ƒbƒsƒ“ƒO
+		//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‹ã‚‰ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã«é€†ãƒãƒƒãƒ”ãƒ³ã‚°
 		double x = userMinx[v] + ( userMaxx[v]-userMinx[v]) *  ((xv - viewMinx[v]) / (viewMaxx[v] - viewMinx[v]));
 
 		//TRACE("viewMinx[%d]=%f\n",v,viewMinx[v]);
@@ -301,7 +301,7 @@ public class MyCanvas{
 		return x;
 	}
 
-	//ƒrƒ…[ƒ|[ƒg‚©‚çƒ†[ƒUÀ•WŒn‚É‹tƒ}ƒbƒsƒ“ƒO(yÀ•W)
+	//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‹ã‚‰ãƒ¦ãƒ¼ã‚¶åº§æ¨™ç³»ã«é€†ãƒãƒƒãƒ”ãƒ³ã‚°(yåº§æ¨™)
 	public double GetUserY(int iy,int v)
 	{
 		double yv = (double)(windowHeight-iy) / (double)windowHeight;
@@ -315,279 +315,279 @@ public class MyCanvas{
 	
 	
 	
-	// ƒNƒŠƒbƒsƒ“ƒO
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 	public void clipRect(double x1, double y1, double x2, double y2,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
 		back.clipRect(x0,y0,width,height);
 	}
 	public void setClip(double x1, double y1, double x2, double y2,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
 		back.setClip(x0,y0,width,height);
 	}
 	
 	public void setClip(double x1, double y1, double x2, double y2, 
 		boolean flag){
-		int ix1 = getIntX(x1);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ìƒrƒ…[ƒ|[ƒg‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getIntY(y1);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getIntX(x2);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getIntY(y2);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
+		int ix1 = getIntX(x1);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getIntY(y1);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getIntX(x2);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getIntY(y2);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
 		back.setClip(x0,y0,width,height);
 	}
 
 	//
-	// •`‰æƒƒ\ƒbƒh
+	// æç”»ãƒ¡ã‚½ãƒƒãƒ‰
 	//
 	
-	// ‹éŒ`‚Ì•`‰æ
+	// çŸ©å½¢ã®æç”»
 	public void drawRect(double x1, double y1, double x2, double y2,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
 		back.drawRect(x0,y0,width,height);
 	}
-	// ‹éŒ`‚Ì“h‚è‚Â‚Ô‚µ
+	// çŸ©å½¢ã®å¡—ã‚Šã¤ã¶ã—
 	public void fillRect(double x1, double y1, double x2, double y2,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
 		back.fillRect(x0,y0,width,height);
 	}
 	
-	// ‹éŒ`‚Å—Ìˆæ‚ğƒNƒŠƒA
+	// çŸ©å½¢ã§é ˜åŸŸã‚’ã‚¯ãƒªã‚¢
 	public void clearRect(double x1, double y1, double x2, double y2,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
 		back.clearRect(x0,y0,width,height);
 	}
 	
 	
-	// Šp‚ÉŠÛ‚İ‚Ì‚ ‚é‹éŒ`‚Ì•`‰æ
+	// è§’ã«ä¸¸ã¿ã®ã‚ã‚‹çŸ©å½¢ã®æç”»
 	public void drawRoundRect(double x1, double y1, double x2, double y2, 
 		double arcW, double arcH,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
-		int iarcWidth = getDimensionX(arcW,num);//Šp‚ÌŠÛ‚İ‚Ì‰¡ƒTƒCƒY
-		int iarcHeight = getDimensionY(arcH,num);//Šp‚ÌŠÛ‚İ‚ÌcƒTƒCƒY
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int iarcWidth = getDimensionX(arcW,num);//è§’ã®ä¸¸ã¿ã®æ¨ªã‚µã‚¤ã‚º
+		int iarcHeight = getDimensionY(arcH,num);//è§’ã®ä¸¸ã¿ã®ç¸¦ã‚µã‚¤ã‚º
 		back.drawRoundRect(x0,y0,width,height,
 			iarcWidth,iarcHeight);
 	}
-	// Šp‚ÉŠÛ‚İ‚Ì‚ ‚é‹éŒ`‚Ì“h‚è‚Â‚Ô‚µ
+	// è§’ã«ä¸¸ã¿ã®ã‚ã‚‹çŸ©å½¢ã®å¡—ã‚Šã¤ã¶ã—
 	public void fillRoundRect(double x1, double y1, double x2, double y2,
 		double arcW, double arcH,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
-		int iarcWidth = getDimensionX(arcW,num);//Šp‚ÌŠÛ‚İ‚Ì‰¡ƒTƒCƒY
-		int iarcHeight = getDimensionY(arcH,num);//Šp‚ÌŠÛ‚İ‚ÌcƒTƒCƒY
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int iarcWidth = getDimensionX(arcW,num);//è§’ã®ä¸¸ã¿ã®æ¨ªã‚µã‚¤ã‚º
+		int iarcHeight = getDimensionY(arcH,num);//è§’ã®ä¸¸ã¿ã®ç¸¦ã‚µã‚¤ã‚º
 		back.fillRoundRect(x0,y0,width,height,
 			iarcWidth,iarcHeight);
 	}
 	
-	// •‚‚©‚Ñã‚ª‚é‹éŒ`‚Ì•`‰æ
+	// æµ®ã‹ã³ä¸ŠãŒã‚‹çŸ©å½¢ã®æç”»
 	public void draw3DRect(double x1, double y1, double x2, double y2,
 		boolean raised,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
 		back.draw3DRect(x0,y0,width,height,raised);
 	}
-	// •‚‚©‚Ñã‚ª‚é‹éŒ`‚Ì“h‚è‚Â‚Ô‚µ
+	// æµ®ã‹ã³ä¸ŠãŒã‚‹çŸ©å½¢ã®å¡—ã‚Šã¤ã¶ã—
 	public void fill3DRect(double x1, double y1, double x2, double y2,
 		boolean raised,int num){
-		int ix1 = getX(x1,num);//‚S‹÷‚Ì‚Ç‚±‚©‚Ì“_‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy1 = getY(y1,num);//x1‚Æ“¯‚¶“_‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int ix2 = getX(x2,num);//x1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚˜À•W’l‚ğJavaÀ•W’l‚É
-		int iy2 = getY(y2,num);//y1‚É‘Î‚µ‘ÎŠpüã‚Ì‹÷‚Ì‚™À•W’l‚ğJavaÀ•W’l‚É
-		int width = Math.abs(ix1-ix2)+1;//‰¡•‚ğŒvZ
-		int height = Math.abs(iy1-iy2)+1;//c•‚ğŒvZ
-		int x0 = (ix1 <= ix2) ? ix1 : ix2;//ŠJn“_‚ÌXÀ•Wi¶ãj
-		int y0 = (iy1 <= iy2) ? iy1 : iy2;//ŠJn“_‚ÌYÀ•Wi¶ãj
+		int ix1 = getX(x1,num);//ï¼”éš…ã®ã©ã“ã‹ã®ç‚¹ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy1 = getY(y1,num);//x1ã¨åŒã˜ç‚¹ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int ix2 = getX(x2,num);//x1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½˜åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int iy2 = getY(y2,num);//y1ã«å¯¾ã—å¯¾è§’ç·šä¸Šã®éš…ã®ï½™åº§æ¨™å€¤ã‚’Javaåº§æ¨™å€¤ã«
+		int width = Math.abs(ix1-ix2)+1;//æ¨ªå¹…ã‚’è¨ˆç®—
+		int height = Math.abs(iy1-iy2)+1;//ç¸¦å¹…ã‚’è¨ˆç®—
+		int x0 = (ix1 <= ix2) ? ix1 : ix2;//é–‹å§‹ç‚¹ã®Xåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
+		int y0 = (iy1 <= iy2) ? iy1 : iy2;//é–‹å§‹ç‚¹ã®Yåº§æ¨™ï¼ˆå·¦ä¸Šï¼‰
 		back.fill3DRect(x0,y0,width,height,raised);
 	}		
-	// ‚¾‰~‚Ì•`‰æ@i’†S(x,y), ”¼Œa(xr,yr))
+	// ã å††ã®æç”»ã€€ï¼ˆä¸­å¿ƒ(x,y), åŠå¾„(xr,yr))
 	public void drawOval(double x, double y, double xr, double yr,int num){
-		int ix = getX(x,num);//‚¾‰~‚Ì’†S‚ÌJava AWT‚Å‚ÌXÀ•W
-		int iy = getY(y,num);//‚¾‰~‚Ì’†S‚ÌJava AWT‚Å‚ÌYÀ•W
-		int ixr = getDimensionX(xr,num);//”¼Œa‚Ì‰¡•
-		int iyr = getDimensionY(yr,num);//”¼Œa‚Ìc•
-		int x0 = ix - ixr;//‚¾‰~‚ğˆÍ‚Ş‹éŒ`‚Ì¶ã‹÷iXj
-		int y0 = iy - iyr;//‚¾‰~‚ğˆÍ‚Ş‹éŒ`‚Ì¶ã‹÷iXj
+		int ix = getX(x,num);//ã å††ã®ä¸­å¿ƒã®Java AWTã§ã®Xåº§æ¨™
+		int iy = getY(y,num);//ã å††ã®ä¸­å¿ƒã®Java AWTã§ã®Yåº§æ¨™
+		int ixr = getDimensionX(xr,num);//åŠå¾„ã®æ¨ªå¹…
+		int iyr = getDimensionY(yr,num);//åŠå¾„ã®ç¸¦å¹…
+		int x0 = ix - ixr;//ã å††ã‚’å›²ã‚€çŸ©å½¢ã®å·¦ä¸Šéš…ï¼ˆXï¼‰
+		int y0 = iy - iyr;//ã å††ã‚’å›²ã‚€çŸ©å½¢ã®å·¦ä¸Šéš…ï¼ˆXï¼‰
 		back.drawOval(x0,y0,2*ixr,2*iyr);
 	}
-	// ‚¾‰~‚Ì“h‚è‚Â‚Ô‚µ@i’†S(x,y), ”¼Œa(xr,yr))
+	// ã å††ã®å¡—ã‚Šã¤ã¶ã—ã€€ï¼ˆä¸­å¿ƒ(x,y), åŠå¾„(xr,yr))
 	public void fillOval(double x, double y, double xr, double yr,int num){
-		int ix = getX(x,num);//‚¾‰~‚Ì’†S‚ÌJava AWT‚Å‚ÌXÀ•W
-		int iy = getY(y,num);//‚¾‰~‚Ì’†S‚ÌJava AWT‚Å‚ÌYÀ•W
-		int ixr = getDimensionX(xr,num);//”¼Œa‚Ì‰¡•
-		int iyr = getDimensionY(yr,num);//”¼Œa‚Ìc•
-		int x0 = ix - ixr;//‚¾‰~‚ğˆÍ‚Ş‹éŒ`‚Ì¶ã‹÷iXj
-		int y0 = iy - iyr;//‚¾‰~‚ğˆÍ‚Ş‹éŒ`‚Ì¶ã‹÷iXj
+		int ix = getX(x,num);//ã å††ã®ä¸­å¿ƒã®Java AWTã§ã®Xåº§æ¨™
+		int iy = getY(y,num);//ã å††ã®ä¸­å¿ƒã®Java AWTã§ã®Yåº§æ¨™
+		int ixr = getDimensionX(xr,num);//åŠå¾„ã®æ¨ªå¹…
+		int iyr = getDimensionY(yr,num);//åŠå¾„ã®ç¸¦å¹…
+		int x0 = ix - ixr;//ã å††ã‚’å›²ã‚€çŸ©å½¢ã®å·¦ä¸Šéš…ï¼ˆXï¼‰
+		int y0 = iy - iyr;//ã å††ã‚’å›²ã‚€çŸ©å½¢ã®å·¦ä¸Šéš…ï¼ˆXï¼‰
 		back.fillOval(x0,y0,2*ixr,2*iyr);
 	}
 	
-	// ‰~ŒÊ‚Ì•`‰æ@i’†S(x,y) ”¼Œa(xr,yr))
+	// å††å¼§ã®æç”»ã€€ï¼ˆä¸­å¿ƒ(x,y) åŠå¾„(xr,yr))
     	public void drawArc(double x, double y, double xr, 
 		double yr, double startAngle, double arcAngle,int num){
-		int ix = getX(x,num);//‰~ŒÊ‚Ì’†S‚ÌJava AWT‚Å‚ÌXÀ•W
-		int iy = getY(y,num);//‰~ŒÊ‚Ì’†S‚ÌJava AWT‚Å‚ÌYÀ•W
-		int ixr = getDimensionX(xr,num);//”¼Œa‚Ì‰¡•
-		int iyr = getDimensionY(yr,num);//”¼Œa‚Ìc•
-		int x0 = ix - ixr;//‰~ŒÊ‚ğˆÍ‚Ş‹éŒ`‚Ì¶ã‹÷iXj
-		int y0 = iy - iyr;//‰~ŒÊ‚ğˆÍ‚Ş‹éŒ`‚Ì¶ã‹÷iXj
-		int is = (int)(90-(startAngle+arcAngle));//ŠJnƒAƒ“ƒOƒ‹iƒfƒOƒŠ[j
-		int ia = (int)arcAngle;//îŒ`‚ÌŒÊ‚ÌŠp“xiƒfƒOƒŠ[j
+		int ix = getX(x,num);//å††å¼§ã®ä¸­å¿ƒã®Java AWTã§ã®Xåº§æ¨™
+		int iy = getY(y,num);//å††å¼§ã®ä¸­å¿ƒã®Java AWTã§ã®Yåº§æ¨™
+		int ixr = getDimensionX(xr,num);//åŠå¾„ã®æ¨ªå¹…
+		int iyr = getDimensionY(yr,num);//åŠå¾„ã®ç¸¦å¹…
+		int x0 = ix - ixr;//å††å¼§ã‚’å›²ã‚€çŸ©å½¢ã®å·¦ä¸Šéš…ï¼ˆXï¼‰
+		int y0 = iy - iyr;//å††å¼§ã‚’å›²ã‚€çŸ©å½¢ã®å·¦ä¸Šéš…ï¼ˆXï¼‰
+		int is = (int)(90-(startAngle+arcAngle));//é–‹å§‹ã‚¢ãƒ³ã‚°ãƒ«ï¼ˆãƒ‡ã‚°ãƒªãƒ¼ï¼‰
+		int ia = (int)arcAngle;//æ‰‡å½¢ã®å¼§ã®è§’åº¦ï¼ˆãƒ‡ã‚°ãƒªãƒ¼ï¼‰
 		back.drawArc(x0,y0,2*ixr,2*iyr,is,ia);
 	}
     	
-	// îŒ`‚Ì“h‚è‚Â‚Ô‚µ@i’†S(x,y) ”¼Œa(xr,yr))
+	// æ‰‡å½¢ã®å¡—ã‚Šã¤ã¶ã—ã€€ï¼ˆä¸­å¿ƒ(x,y) åŠå¾„(xr,yr))
     	public void fillArc(double x, double y, double xr, 
 		double yr, double startAngle, double arcAngle,int num){
-		int ix = getX(x,num);//îŒ`‚Ì’†S‚ÌJava AWT‚Å‚ÌXÀ•W
-		int iy = getY(y,num);//îŒ`‚Ì’†S‚ÌJava AWT‚Å‚ÌYÀ•W
-		int ixr = getDimensionX(xr,num);//”¼Œa‚Ì‰¡•
-		int iyr = getDimensionY(yr,num);//”¼Œa‚Ìc•
-		int x0 = ix - ixr;//îŒ`‚ğˆÍ‚Ş‹éŒ`‚Ì¶ã‹÷iXj
-		int y0 = iy - iyr;//îŒ`‚ğˆÍ‚Ş‹éŒ`‚Ì¶ã‹÷iXj
-		int is = (int)(90-(startAngle+arcAngle));//ŠJnƒAƒ“ƒOƒ‹iƒfƒOƒŠ[j
-		int ia = (int)arcAngle;//îŒ`‚ÌŒÊ‚ÌŠp“xiƒfƒOƒŠ[j
+		int ix = getX(x,num);//æ‰‡å½¢ã®ä¸­å¿ƒã®Java AWTã§ã®Xåº§æ¨™
+		int iy = getY(y,num);//æ‰‡å½¢ã®ä¸­å¿ƒã®Java AWTã§ã®Yåº§æ¨™
+		int ixr = getDimensionX(xr,num);//åŠå¾„ã®æ¨ªå¹…
+		int iyr = getDimensionY(yr,num);//åŠå¾„ã®ç¸¦å¹…
+		int x0 = ix - ixr;//æ‰‡å½¢ã‚’å›²ã‚€çŸ©å½¢ã®å·¦ä¸Šéš…ï¼ˆXï¼‰
+		int y0 = iy - iyr;//æ‰‡å½¢ã‚’å›²ã‚€çŸ©å½¢ã®å·¦ä¸Šéš…ï¼ˆXï¼‰
+		int is = (int)(90-(startAngle+arcAngle));//é–‹å§‹ã‚¢ãƒ³ã‚°ãƒ«ï¼ˆãƒ‡ã‚°ãƒªãƒ¼ï¼‰
+		int ia = (int)arcAngle;//æ‰‡å½¢ã®å¼§ã®è§’åº¦ï¼ˆãƒ‡ã‚°ãƒªãƒ¼ï¼‰
 		back.fillArc(x0,y0,2*ixr,2*iyr,is,ia);
 	}	
     	
-	// Ü‚êü‚Ì•`‰æ	
+	// æŠ˜ã‚Œç·šã®æç”»	
 	public void drawPolyline(double[] x, double[] y, int numPoints,int num){
 		int[] ix = new int[numPoints];
 		int[] iy = new int[numPoints];
-		for (int i=0; i < numPoints ; i++){//Java AWTÀ•W’l‚É•ÏŠ·
+		for (int i=0; i < numPoints ; i++){//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 			ix[i] = getX(x[i],num);
 			iy[i] = getY(y[i],num);
 		}
 		back.drawPolyline(ix,iy,numPoints);
 	}
 	
-	// ‘½ŠpŒ`‚Ì•`‰æ
+	// å¤šè§’å½¢ã®æç”»
 	public void drawPolygon(double[] x, double[] y, int numPoints,int num){
 		int[] ix = new int[numPoints];
 		int[] iy = new int[numPoints];
-		for (int i=0; i < numPoints ; i++){//Java AWTÀ•W’l‚É•ÏŠ·
+		for (int i=0; i < numPoints ; i++){//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 			ix[i] = getX(x[i],num);
 			iy[i] = getY(y[i],num);
 		}
 		back.drawPolygon(ix,iy,numPoints);
 	}
-	// ‘½ŠpŒ`‚Ì“h‚è‚Â‚Ô‚µ
+	// å¤šè§’å½¢ã®å¡—ã‚Šã¤ã¶ã—
 	public void fillPolygon(double[] x, double[] y, int numPoints,int num){
 		int[] ix = new int[numPoints];
 		int[] iy = new int[numPoints];
-		for (int i=0; i < numPoints ; i++){//Java AWTÀ•W’l‚É•ÏŠ·
+		for (int i=0; i < numPoints ; i++){//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 			ix[i] = getX(x[i],num);
 			iy[i] = getY(y[i],num);
 		}
 		back.fillPolygon(ix,iy,numPoints);
 	}
 	
-	// •¶š—ñ‚Ì•`‰æ
+	// æ–‡å­—åˆ—ã®æç”»
 	public void drawString(String str, double x, double y,int num){
-		int ix = getX(x,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iy = getY(y,num);//Java AWTÀ•W’l‚É•ÏŠ·
+		int ix = getX(x,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iy = getY(y,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 		back.drawString(str,ix,iy);
 	}
 	
-	// ‰æ‘œ‚Ì•`‰æ
+	// ç”»åƒã®æç”»
     public boolean drawImage(Image img, double x, double y, 
 		ImageObserver observer,int num){
 		if (back == null) return false;
-		int ix = getX(x,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iy = getY(y,num);//Java AWTÀ•W’l‚É•ÏŠ·
+		int ix = getX(x,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iy = getY(y,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 		return back.drawImage(img,ix,iy,observer);
 	}		
     
    	public boolean drawImage(Image img, double x, double y, 
 		double w, double h, ImageObserver observer,int num){
 		if (back == null) return false;
-		int ix = getX(x,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iy = getY(y,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iw = getDimensionX(w,num);//getX(w)-getX(0);//‰æ‘œ‚Ì‰¡•
-		int ih = getDimensionY(h,num);//getY(0)-getY(h);//‰æ‘œ‚Ìc•
+		int ix = getX(x,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iy = getY(y,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iw = getDimensionX(w,num);//getX(w)-getX(0);//ç”»åƒã®æ¨ªå¹…
+		int ih = getDimensionY(h,num);//getY(0)-getY(h);//ç”»åƒã®ç¸¦å¹…
 		return back.drawImage(img,ix,iy,iw,ih,observer);
 	}
    	
    	public boolean drawImage(Image img, double x, double y, 
 		Color bgcolor, ImageObserver observer,int num){
-		int ix = getX(x,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iy = getY(y,num);//Java AWTÀ•W’l‚É•ÏŠ·
+		int ix = getX(x,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iy = getY(y,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 		return back.drawImage(img,ix,iy,bgcolor,observer);
 	}		
    	public boolean drawImage(Image img, double x, double y, 
 		double w, double h, 
 		Color bgcolor, ImageObserver observer,int num){
-		int ix = getX(x,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iy = getY(y,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int iw = getDimensionX(w,num);//‰æ‘œ‚Ì‰¡•
-		int ih = getDimensionY(h,num);//‰æ‘œ‚Ìc•
+		int ix = getX(x,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iy = getY(y,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int iw = getDimensionX(w,num);//ç”»åƒã®æ¨ªå¹…
+		int ih = getDimensionY(h,num);//ç”»åƒã®ç¸¦å¹…
 		return back.drawImage(img,ix,iy,iw,ih,bgcolor,observer);
 	}		
 	public boolean drawImage(Image img,
 		double dx1, double dy1, double dx2, double dy2,
 		double sx1, double sy1, double sx2, double sy2,
 		ImageObserver observer,int num){
-		int idx1 = getX(dx1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int idy1 = getY(dy1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int idx2 = getX(dx2,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int idy2 = getY(dy2,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int isx1 = getX(sx1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int isy1 = getY(sy1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int isx2 = getX(sx2,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int isy2 = getY(sy2,num);//Java AWTÀ•W’l‚É•ÏŠ·
+		int idx1 = getX(dx1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int idy1 = getY(dy1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int idx2 = getX(dx2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int idy2 = getY(dy2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int isx1 = getX(sx1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int isy1 = getY(sy1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int isx2 = getX(sx2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int isy2 = getY(sy2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 		return back.drawImage(img,
 			idx1, idy1, idx2, idy2,	isx1, isy1, isx2, isy2, observer);
 	}
@@ -596,20 +596,20 @@ public class MyCanvas{
 		double dx1, double dy1, double dx2, double dy2,
 		double sx1, double sy1, double sx2, double sy2,
 		Color bgcolor, ImageObserver observer,int num){
-		int idx1 = getX(dx1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int idy1 = getY(dy1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int idx2 = getX(dx2,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int idy2 = getY(dy2,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int isx1 = getX(sx1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int isy1 = getY(sy1,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int isx2 = getX(sx2,num);//Java AWTÀ•W’l‚É•ÏŠ·
-		int isy2 = getY(sy2,num);//Java AWTÀ•W’l‚É•ÏŠ·
+		int idx1 = getX(dx1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int idy1 = getY(dy1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int idx2 = getX(dx2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int idy2 = getY(dy2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int isx1 = getX(sx1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int isy1 = getY(sy1,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int isx2 = getX(sx2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
+		int isy2 = getY(sy2,num);//Java AWTåº§æ¨™å€¤ã«å¤‰æ›
 		return back.drawImage(img,
 			idx1, idy1, idx2, idy2, isx1, isy1, isx2, isy2,
 			bgcolor, observer);
 	}
 	
-	// x‚Ì•„†‚ğ•Ô‚·ƒƒ\ƒbƒh
+	// xã®ç¬¦å·ã‚’è¿”ã™ãƒ¡ã‚½ãƒƒãƒ‰
 	public int Sign(int x){
 		if (x > 0) return 1;
 		else if (x < 0) return -1;
@@ -622,13 +622,13 @@ public class MyCanvas{
 	}
 	
 	
-	// ’¼ü•`‰æ‚Ì•Ê‚Ìƒƒ\ƒbƒh
+	// ç›´ç·šæç”»ã®åˆ¥ã®ãƒ¡ã‚½ãƒƒãƒ‰
 	public void moveTo(double x, double y,int num){
-		lastx = x;//‚à‚Á‚Æ‚àÅ‹ß‚ÌXˆÊ’u‚ğƒZƒbƒg
-		lasty = y;//‚à‚Á‚Æ‚àÅ‹ß‚ÌYˆÊ’u‚ğƒZƒbƒg
+		lastx = x;//ã‚‚ã£ã¨ã‚‚æœ€è¿‘ã®Xä½ç½®ã‚’ã‚»ãƒƒãƒˆ
+		lasty = y;//ã‚‚ã£ã¨ã‚‚æœ€è¿‘ã®Yä½ç½®ã‚’ã‚»ãƒƒãƒˆ
 	}
 	public void lineTo(double x, double y,int num){
-		drawLine(lastx,lasty,x,y,num);//’¼ü‚ğ•`‰æ
-		lastx = x; lasty = y;//Å‹ß‚ÌˆÊ’u‚ğXV
+		drawLine(lastx,lasty,x,y,num);//ç›´ç·šã‚’æç”»
+		lastx = x; lasty = y;//æœ€è¿‘ã®ä½ç½®ã‚’æ›´æ–°
 	}
 }

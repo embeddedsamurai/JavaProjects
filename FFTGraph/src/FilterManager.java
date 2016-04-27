@@ -23,13 +23,13 @@ public class FilterManager  implements Runnable{
 	/** For Debug */
 	public static final boolean DEBUG=false;
 
-	/** Applet ƒRƒs[—p */
+	/** Applet ã‚³ãƒ”ãƒ¼ç”¨ */
 	private Applet  mApplet;
 	
-	/** ³Œ·”g‚È‚Ç‚ÌƒOƒ‰ƒt‚ğ•\¦‚·‚é‚½‚ß‚Ìƒpƒlƒ‹ */
+	/** æ­£å¼¦æ³¢ãªã©ã®ã‚°ãƒ©ãƒ•ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ‘ãƒãƒ« */
 	SignalPanel panel;
 
-	/** ƒXƒyƒNƒgƒ‹—p‚Ìƒpƒlƒ‹ */
+	/** ã‚¹ãƒšã‚¯ãƒˆãƒ«ç”¨ã®ãƒ‘ãƒãƒ« */
 	SpectrumPanel spectrum;
 	
 	/** Graphics */
@@ -38,23 +38,23 @@ public class FilterManager  implements Runnable{
 	/** Key */
 	public Key key;
 		
-	/** ƒf[ƒ^” */
+	/** ãƒ‡ãƒ¼ã‚¿æ•° */
 	public int Num=512;
-	/** ¶¬”gŒ`‚Ìü”g” */
+	/** ç”Ÿæˆæ³¢å½¢ã®å‘¨æ³¢æ•° */
 	private double freq = 5;
 	
-	/** ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒgü”g” */
+	/** ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆå‘¨æ³¢æ•° */
 	private double sample = 250;
 	
-	/** ƒTƒ“ƒvƒŠƒ“ƒOüŠú */
+	/** ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æœŸ */
 	public double dt= 1./sample;
 	
-	/** Šî–{ü”g” */
+	/** åŸºæœ¬å‘¨æ³¢æ•° */
 	public double df=dt/(double)Num;
-	/** “ü—ÍM†¶¬ƒNƒ‰ƒX */
+	/** å…¥åŠ›ä¿¡å·ç”Ÿæˆã‚¯ãƒ©ã‚¹ */
 	private WaveGen waveGen;
 
-	/** ”gŒ`‚ği‚ß‚é‚½‚ß‚Ìƒtƒ‰ƒO */
+	/** æ³¢å½¢ã‚’é€²ã‚ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚° */
 	private static boolean waveFlag=false;
 
 	public static boolean runFlag;
@@ -69,7 +69,7 @@ public class FilterManager  implements Runnable{
 	public MyCanvas mc;
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	public FilterManager(FFTGraph applet) {
 
@@ -84,59 +84,59 @@ public class FilterManager  implements Runnable{
 		dt= 1./sample;
 		df= sample/(double)Num;
 		
-		//ƒTƒCƒ“¶¬ƒNƒ‰ƒX(‰Šú‚Å‚ÍƒTƒCƒ“”g)
+		//ã‚µã‚¤ãƒ³ç”Ÿæˆã‚¯ãƒ©ã‚¹(åˆæœŸã§ã¯ã‚µã‚¤ãƒ³æ³¢)
 		waveGen = new SinGen(freq,sample);    	
-		//ƒTƒCƒ“”g¶¬—p•Ï”‚Ì‰Šú‰»ˆ—
+		//ã‚µã‚¤ãƒ³æ³¢ç”Ÿæˆç”¨å¤‰æ•°ã®åˆæœŸåŒ–å‡¦ç†
 		waveGen.init(freq, sample);
 				
-		//ƒpƒlƒ‹‚Ìİ’è
+		//ãƒ‘ãƒãƒ«ã®è¨­å®š
 		panel=new SignalPanel(this.mc);
 		panel.setInfoLabel(freq,sample);
 
-		//ƒXƒyƒNƒgƒ‹•\¦—pƒpƒlƒ‹‚Ìì¬
+		//ã‚¹ãƒšã‚¯ãƒˆãƒ«è¡¨ç¤ºç”¨ãƒ‘ãƒãƒ«ã®ä½œæˆ
 		spectrum = new SpectrumPanel(this.mc,this.sample);
 		spectrum.setInfoLabel(512);
 
 
 		waveFlag=false;
 		
-		//FFTŒvZƒNƒ‰ƒX
+		//FFTè¨ˆç®—ã‚¯ãƒ©ã‚¹
 		fft = new MyFFT();
 		fftstart();
 
 	}
 	
 	/**
-		* Às‚ÌŠJn
+		* å®Ÿè¡Œã®é–‹å§‹
 		*/
 	public void fftstart(){
-		//‰Šú‰»ˆ—
+		//åˆæœŸåŒ–å‡¦ç†
 		//init();
-		//Àsƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		//å®Ÿè¡Œãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		runFlag = true;
-		//ƒXƒŒƒbƒh‚Ì‹N“®
+		//ã‚¹ãƒ¬ãƒƒãƒ‰ã®èµ·å‹•
 		thread = new Thread(this);
-		//Às‚ÌŠJn
+		//å®Ÿè¡Œã®é–‹å§‹
 		thread.start();
 	}
 	
 	public void run(){
 		try{
-			//ƒXƒŠ[ƒvŠÔ
+			//ã‚¹ãƒªãƒ¼ãƒ—æ™‚é–“
 			long startTime = System.currentTimeMillis();
-			//ŒvZ‚É‚©‚©‚Á‚½ŠÔ
+			//è¨ˆç®—ã«ã‹ã‹ã£ãŸæ™‚é–“
 			long pastTime = 0;
 
 			while(runFlag){
 
 				startTime = System.currentTimeMillis();
 
-				//‚±‚±‚Åƒt[ƒŠƒG•ÏŠ·‚·‚é
+				//ã“ã“ã§ãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã™ã‚‹
 				if(fftmode==SET_FFT){
 					
 					spectrum.setSpectrum(fft.getASpectrum());
 				}else if(fftmode==SET_DFT){
-					//‚±‚±‚Å—£Uƒt[ƒŠƒG•ÏŠ·‚·‚é
+					//ã“ã“ã§é›¢æ•£ãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã™ã‚‹
 					
 					spectrum.setSpectrum2(fft.getDFFTSpectrum(this.dt,this.df));
 				}else if(fftmode==SET_ALLFT){
@@ -144,11 +144,11 @@ public class FilterManager  implements Runnable{
 					spectrum.setSpectrum(fft.getASpectrum());
 					spectrum.setSpectrum2(fft.getDFFTSpectrum(this.dt,this.df));
 				}
-				//ŒvZ‚É‚©‚©‚Á‚½ŠÔ
+				//è¨ˆç®—ã«ã‹ã‹ã£ãŸæ™‚é–“
 				pastTime = System.currentTimeMillis() - startTime;
 
 				if(pastTime < SLEEP_TIME){
-					//‹x~
+					//ä¼‘æ­¢
 					pause(SLEEP_TIME+5 - pastTime);
 				}
 
@@ -160,11 +160,11 @@ public class FilterManager  implements Runnable{
 	}//end of run
 
 	/**
-	 * ƒXƒŒƒbƒh‚Ì‹x~
+	 * ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä¼‘æ­¢
 	 */
 	public void pause(long time){
 		try {
-			//ƒXƒŠ[ƒv
+			//ã‚¹ãƒªãƒ¼ãƒ—
 			Thread.sleep(time);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -180,40 +180,40 @@ public class FilterManager  implements Runnable{
 	}
 
 	/**
-	 * ƒƒCƒ“ˆ—
+	 * ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	 */
 	public void process(){
-		//ƒL[ˆ—
+		//ã‚­ãƒ¼å‡¦ç†
 		key();
-		//ƒŠƒNƒGƒXƒg‚Ìˆ—
+		//ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å‡¦ç†
 		if(waveFlag) newDataInput();
-		//•`‰æ
+		//æç”»
 		draw();
 	}
 	
 		
 	/**
-		* ƒL[ˆ—
+		* ã‚­ãƒ¼å‡¦ç†
 		*/
 	private void key(){
 	}
 	
 	/**
-		* ƒLƒ…[‚Ì’†‚ÌƒŠƒNƒGƒXƒg‚ğˆ—‚·‚é
+		* ã‚­ãƒ¥ãƒ¼ã®ä¸­ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡¦ç†ã™ã‚‹
 		*/
 	private void newDataInput(){
 		
-		//V‚½‚Èƒf[ƒ^‚ğˆê‚Â“ü‚ê‚é
-		//ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg250Hz‚Ìê‡‚Í1‚Â‚Ìƒf[ƒ^‚Í0.004•b‚²‚Æ‚É’u‚©‚ê‚é
+		//æ–°ãŸãªãƒ‡ãƒ¼ã‚¿ã‚’ä¸€ã¤å…¥ã‚Œã‚‹
+		//ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ250Hzã®å ´åˆã¯1ã¤ã®ãƒ‡ãƒ¼ã‚¿ã¯0.004ç§’ã”ã¨ã«ç½®ã‹ã‚Œã‚‹
 		double data = waveGen.nextWave();
 		panel.putInput(data);
-		//FFT“ü—Íƒoƒbƒtƒ@‚ÌXV
+		//FFTå…¥åŠ›ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 		fft.putInput(data);
 	}
 
 	
 	/**
-		* •`‰æˆ—
+		* æç”»å‡¦ç†
 		*/
 	private void draw() {
 		panel.paintComponent(this.dt);
@@ -222,7 +222,7 @@ public class FilterManager  implements Runnable{
 
 	
 	/**
-		* panel‚Ìx Gain‚Ì•ÏX
+		* panelã®x Gainã®å¤‰æ›´
 		* @param value
 		*/
 	public void setXGain(int value){
@@ -237,18 +237,18 @@ public class FilterManager  implements Runnable{
 		mc.changeUserWindow(0,spectrum.nyquist-value,-10,200,2);
 	}
 	
-	//‘‹ŠÖ”‚È‚µ
+	//çª“é–¢æ•°ãªã—
 	public static final int SET_FFT = 0;
-	//ƒnƒ~ƒ“ƒO
+	//ãƒãƒŸãƒ³ã‚°
 	public static final int SET_DFT  = 1;
-	//ƒuƒ‰ƒbƒNƒ}ƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ãƒãƒ³
 	public static final int SET_ALLFT  = 2;
 	
 	public void setFFTMode(int value){
 		fftmode = value;
 	}
 	/**
-	 * ¶¬‚·‚éM†‚Ìü”g”‚Ì•ÏX
+	 * ç”Ÿæˆã™ã‚‹ä¿¡å·ã®å‘¨æ³¢æ•°ã®å¤‰æ›´
 	 * @param value
 	 */
 	public void setFrequency(double freq){
@@ -267,7 +267,7 @@ public class FilterManager  implements Runnable{
 		panel.setInfoLabel(freq,sample);
 	}
 	/**
-	 * ¶¬‚·‚éM†‚Ìü”g”‚ğæ“¾
+	 * ç”Ÿæˆã™ã‚‹ä¿¡å·ã®å‘¨æ³¢æ•°ã‚’å–å¾—
 	 * @return
 	 */
 	public double getFrequency(){
@@ -275,7 +275,7 @@ public class FilterManager  implements Runnable{
 	}
 
 	/**
-	 * ƒTƒ“ƒvƒŠƒ“ƒOü”g”‚ğæ“¾
+	 * ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°ã‚’å–å¾—
 	 * @return
 	 */
 	public double getSampleRate(){
@@ -283,57 +283,57 @@ public class FilterManager  implements Runnable{
 	}
 
 	/**
-		* ¶¬‚·‚éM†‚Ìí—Ş‚ğ•ÏX
+		* ç”Ÿæˆã™ã‚‹ä¿¡å·ã®ç¨®é¡ã‚’å¤‰æ›´
 		* @param gen
 		*/
-	//ƒTƒCƒ“”g
+	//ã‚µã‚¤ãƒ³æ³¢
 	public static final int INPUT_SIN = 0;
-	//‹éŒ`”g
+	//çŸ©å½¢æ³¢
 	public static final int INPUT_REC = 1;
-	//‚Ì‚±‚¬‚è”g
+	//ã®ã“ãã‚Šæ³¢
 	public static final int INPUT_SAW = 2;
-	//OŠp”g
+	//ä¸‰è§’æ³¢
 	public static final int INPUT_TRI = 3;
-	//S“d}
+	//å¿ƒé›»å›³
 	public static final int INPUT_ECG = 4;
-	//–¬”g
+	//è„ˆæ³¢
 	public static final int INPUT_PLS = 5;
 
-	//“ü—ÍM†
+	//å…¥åŠ›ä¿¡å·
 	//private int inputWave = INPUT_SIN;
 
-	//MainGraph.java‚ÌitemStateChanged‚©‚çŒÄ‚Î‚ê‚éB
+	//MainGraph.javaã®itemStateChangedã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã€‚
 	public void setWaveGen(int gen){
 		switch (gen) {
-		case INPUT_SIN://ƒTƒCƒ“”g
+		case INPUT_SIN://ã‚µã‚¤ãƒ³æ³¢
 			waveGen = new SinGen(freq,sample);
 			break;
-		case INPUT_REC://‹éŒ`”g
+		case INPUT_REC://çŸ©å½¢æ³¢
 			waveGen = new RecGen(freq,sample);
 			break;
-		case INPUT_SAW://‚Ì‚±‚¬‚è”g
+		case INPUT_SAW://ã®ã“ãã‚Šæ³¢
 			waveGen = new SawtoothGen(freq,sample);
 			break;
-		case INPUT_TRI://OŠp”g
+		case INPUT_TRI://ä¸‰è§’æ³¢
 			waveGen = new TriangleGen(freq,sample);
 			break;
 		case INPUT_ECG://ECG
 			waveGen = new ECG(mApplet.getCodeBase().toString() + "ecg1.txt");
 			break;
-		case INPUT_PLS://–¬”g
+		case INPUT_PLS://è„ˆæ³¢
 			waveGen = new PLS(mApplet.getCodeBase().toString() + "pls1.txt");
 		default:
 			break;
 		}
 	}
 	
-	//‘‹ŠÖ”‚È‚µ
+	//çª“é–¢æ•°ãªã—
 	public static final int WND_NONE = 0;
-	//ƒnƒ~ƒ“ƒO
+	//ãƒãƒŸãƒ³ã‚°
 	public static final int WND_HAMMING  = 1;
-	//ƒuƒ‰ƒbƒNƒ}ƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ãƒãƒ³
 	public static final int WND_BLKMAN  = 2;
-	//ƒnƒ“
+	//ãƒãƒ³
 	public static final int WND_HANN = 3;	
 	
 	public void setWndFuc(int wndFnc){

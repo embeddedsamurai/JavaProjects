@@ -14,19 +14,19 @@ public class TitleManager{
 	/** For Debug */
 	public static final boolean DEBUG=true;
 
-	/** Applet ƒRƒs[—p */
+	/** Applet ã‚³ãƒ”ãƒ¼ç”¨ */
 	private Applet  mApplet;
 
-	/** ƒƒjƒ…[‚ÌƒCƒ“ƒfƒbƒNƒX‚ğƒCƒ“ƒNƒŠƒƒ“ƒg */
+	/** ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ */
 	private static final int INCREMENT_MENU_INDEX = 0;
 	
-	/** ƒƒjƒ…[‚ÌƒCƒ“ƒfƒbƒNƒX‚ğƒfƒNƒŠƒƒ“ƒg */
+	/** ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ */
 	private static final int DECREMENT_MENU_INDEX = 1;
 	
 	private Graphics back;
 	private Key key;
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	public TitleManager(FFTGraph applet) {
 
@@ -37,26 +37,26 @@ public class TitleManager{
 	}
 	
 	/**
-	 * ƒƒCƒ“ˆ—
+	 * ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	 */
 	public void process(){
-		//ƒL[ˆ—
+		//ã‚­ãƒ¼å‡¦ç†
 		key();
-		//ƒŠƒNƒGƒXƒg‚Ìˆ—
+		//ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å‡¦ç†
 		doRequest();
-		//•`‰æ
+		//æç”»
 		draw();		
 	}
 	
 		
 	/**
-		* ƒL[ˆ—
+		* ã‚­ãƒ¼å‡¦ç†
 		*/
 	private void key(){
 		if(key.isKeyPressed(Key.KEY_RIGHT)){
-			if(DEBUG) System.out.println("‰E");
+			if(DEBUG) System.out.println("å³");
 		}else if(key.isKeyPressed(Key.KEY_LEFT)){
-			if(DEBUG) System.out.println("¶");
+			if(DEBUG) System.out.println("å·¦");
 		}else if(key.isKeyPressed(Key.KEY_0)){
 			if(DEBUG) System.out.println("0");
 		}else if(key.isKeyPressed(Key.KEY_ENTER)){
@@ -65,14 +65,14 @@ public class TitleManager{
 	}
 	
 	/**
-		* ƒLƒ…[‚Ì’†‚ÌƒŠƒNƒGƒXƒg‚ğˆ—‚·‚é
+		* ã‚­ãƒ¥ãƒ¼ã®ä¸­ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡¦ç†ã™ã‚‹
 		*/
 	private void doRequest(){
 	}
 	
 	
 	/**
-		* •`‰æˆ—
+		* æç”»å‡¦ç†
 		*/
 	private void draw() {
 		
@@ -88,8 +88,8 @@ public class TitleManager{
 		back.setColor(color);
 		
 		Font f0 = FFTGraph.SetFont(back.getFont().getName(),back.getFont().getStyle(), 3.0);
-		//•W€ƒTƒCƒY‚ÌƒtƒHƒ“ƒg‚ğ¶¬
-		back.setFont(f0);//Œ»İƒtƒHƒ“ƒg‚Ìİ’è
+		//æ¨™æº–ã‚µã‚¤ã‚ºã®ãƒ•ã‚©ãƒ³ãƒˆã‚’ç”Ÿæˆ
+		back.setFont(f0);//ç¾åœ¨ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®š
 		
 		back.drawString("DFT FFT Check Program",FFTGraph.width/2-170,FFTGraph.height/2-40);
 		back.drawString("(c)2005-2008 embedded.samurai",FFTGraph.width/2-220,FFTGraph.height/2+40);

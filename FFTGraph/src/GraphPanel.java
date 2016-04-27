@@ -10,25 +10,25 @@ import java.awt.image.*;
 import java.util.*;
 
 abstract public class GraphPanel{
-	//ƒtƒHƒ“ƒg	
+	//ãƒ•ã‚©ãƒ³ãƒˆ	
 	protected static final Font FONT =  FFTGraph.SetFont("Serif",Font.BOLD,2);
-	//ƒtƒHƒ“ƒg(–Ú·‚è—p)
+	//ãƒ•ã‚©ãƒ³ãƒˆ(ç›®ç››ã‚Šç”¨)
 	protected static final Font BG_FONT =  FFTGraph.SetFont("Serif",Font.PLAIN,1);
 		
-	//ƒf[ƒ^ƒ|ƒCƒ“ƒg” 
+	//ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒˆæ•° 
 	protected static final int PNT_WIDTH = 512;
-	//b’è“I‚È‚‚³     
+	//æš«å®šçš„ãªé«˜ã•     
 	protected static int PNT_HEIGHT = 200;
 	
-	//”wŒiF
+	//èƒŒæ™¯è‰²
 	protected static final Color BG_COLOR = Color.WHITE;
-	//–Ú·‚èü‚ÌF
+	//ç›®ç››ã‚Šç·šã®è‰²
 	protected static final Color BG_LINE_COLOR = Color.LIGHT_GRAY;
-	//–Ú·‚è‚Ìš‚ÌF
+	//ç›®ç››ã‚Šã®å­—ã®è‰²
 	protected static final Color BG_STR_COLOR = Color.BLACK;
 	
 	public GraphPanel() {
-		//ƒpƒlƒ‹‚Ì‘å‚«‚³‚ğİ’è
+		//ãƒ‘ãƒãƒ«ã®å¤§ãã•ã‚’è¨­å®š
 	
 	}
 	

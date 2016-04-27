@@ -11,17 +11,17 @@ import java.util.*;
 
 public class SpectrumPanel extends GraphPanel{
 	
-	//ƒiƒCƒLƒXƒgü”g”
+	//ãƒŠã‚¤ã‚­ã‚¹ãƒˆå‘¨æ³¢æ•°
 	public double nyquist;
-	//•`‰æ—pƒXƒyƒNƒgƒ‹‚Ìƒoƒbƒtƒ@
+	//æç”»ç”¨ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®ãƒãƒƒãƒ•ã‚¡
 	private int[] drawBuffer = new int[PNT_WIDTH];
 	
-	//•`‰æ—pƒXƒyƒNƒgƒ‹‚Ìƒoƒbƒtƒ@
+	//æç”»ç”¨ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®ãƒãƒƒãƒ•ã‚¡
 	private int[] drawBuffer2 = new int[PNT_WIDTH];
 	
-	//U•ƒXƒyƒNƒgƒ‹‚ÌF
+	//æŒ¯å¹…ã‚¹ãƒšã‚¯ãƒˆãƒ«ã®è‰²
 	private static final Color WAVE_COLOR = Color.MAGENTA;
-	//ƒpƒlƒ‹‚É•\¦‚·‚éî•ñ
+	//ãƒ‘ãƒãƒ«ã«è¡¨ç¤ºã™ã‚‹æƒ…å ±
 	private String infoLabel ="";
 	
 	Graphics g;
@@ -29,8 +29,8 @@ public class SpectrumPanel extends GraphPanel{
 
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param sample ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 * @param sample ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
 	 */
 	public SpectrumPanel(MyCanvas mc,double sample) {
 		this.mc = mc;
@@ -41,7 +41,7 @@ public class SpectrumPanel extends GraphPanel{
 	}
 	
 	/**
-	 * ‰Šú‰»
+	 * åˆæœŸåŒ–
 	 */
 	public void init(){
 		for(int i = 0; i < drawBuffer.length ; i++){
@@ -52,8 +52,8 @@ public class SpectrumPanel extends GraphPanel{
 	
 
 	/**
-	 * •`‰æƒƒ\ƒbƒh
-	 * @param g GraphicsƒIƒuƒWƒFƒNƒg
+	 * æç”»ãƒ¡ã‚½ãƒƒãƒ‰
+	 * @param g Graphicsã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	public void paintComponent(double df) {
 		drawBackground();
@@ -62,8 +62,8 @@ public class SpectrumPanel extends GraphPanel{
 	}
 	
 	/**
-	 * ”wŒi‚ğ•`‰æ‚·‚é
-	 * @param g GraphicsƒIƒuƒWƒFƒNƒg
+	 * èƒŒæ™¯ã‚’æç”»ã™ã‚‹
+	 * @param g Graphicsã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	private void drawBackground(){
 		
@@ -97,7 +97,7 @@ public class SpectrumPanel extends GraphPanel{
 		mc.back.setFont(BG_FONT);
 		
 		
-		//–Ú·‚èü ‰¡
+		//ç›®ç››ã‚Šç·š æ¨ª
 		int j=0;
 		for(double i = minx; i < maxx; i += userTickX){
 			
@@ -114,7 +114,7 @@ public class SpectrumPanel extends GraphPanel{
 			j++;
 		}
 		
-		//–Ú·‚èü c	
+		//ç›®ç››ã‚Šç·š ç¸¦	
 		j=0;
 		for(double i = miny*10; i <= maxy*10 ; i += userTickY*10){
 			
@@ -134,13 +134,13 @@ public class SpectrumPanel extends GraphPanel{
 	}
 	
 	/**
-	 * ”gŒ`‚ğ•`‰æ‚·‚é
+	 * æ³¢å½¢ã‚’æç”»ã™ã‚‹
 	 * @param g
 	 */
 	private void drawWave(double df){
 		
 		
-		//ƒXƒyƒNƒgƒ‹‚ğ•`‰æ	
+		//ã‚¹ãƒšã‚¯ãƒˆãƒ«ã‚’æç”»	
 		//System.out.printf("dt="+df);
 		for(int i = 0; i < drawBuffer.length - 1 ; i++){
 			if(FilterManager.fftmode == FilterManager.SET_DFT){
@@ -159,8 +159,8 @@ public class SpectrumPanel extends GraphPanel{
 	}
 	
 	/**
-	 * ƒ‰ƒxƒ‹‚Ì•`‰æ
-	 * @param g GraphicsƒIƒuƒWƒFƒNƒg
+	 * ãƒ©ãƒ™ãƒ«ã®æç”»
+	 * @param g Graphicsã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	private void drawLabel(){
 		mc.back.setFont(FONT);
@@ -169,20 +169,20 @@ public class SpectrumPanel extends GraphPanel{
 	}
 	
 	/**
-	 * ƒXƒyƒNƒgƒ‹‚ğXV
+	 * ã‚¹ãƒšã‚¯ãƒˆãƒ«ã‚’æ›´æ–°
 	 * @param val
 	 */
 	public void setSpectrum(double val[]){		
 			
 		double max = val[0];
 		
-		//X²•ûŒü‚Ìƒ}ƒbƒsƒ“ƒO
+		//Xè»¸æ–¹å‘ã®ãƒãƒƒãƒ”ãƒ³ã‚°
 		for(int i = 0; i < drawBuffer.length ; i++){
 			drawBuffer[i] = (int)val[i];
 			if(max < drawBuffer[i])max = drawBuffer[i];
 		}
 		
-		//Max‚ğPanel‚Ì‚‚³‚Æ‚µ‚Ä³‹K‰»
+		//Maxã‚’Panelã®é«˜ã•ã¨ã—ã¦æ­£è¦åŒ–
 		double ygain = (double)PNT_HEIGHT /(double) max;
 		
 		for(int i = 0; i < drawBuffer.length ; i++){
@@ -194,13 +194,13 @@ public class SpectrumPanel extends GraphPanel{
 		
 		double max = val[0];
 		
-		//X²•ûŒü‚Ìƒ}ƒbƒsƒ“ƒO
+		//Xè»¸æ–¹å‘ã®ãƒãƒƒãƒ”ãƒ³ã‚°
 		for(int i = 0; i < drawBuffer2.length ; i++){
 			drawBuffer2[i] = (int)val[i];
 			if(max < drawBuffer2[i])max = drawBuffer2[i];
 		}
 		
-		//Max‚ğPanel‚Ì‚‚³‚Æ‚µ‚Ä³‹K‰»
+		//Maxã‚’Panelã®é«˜ã•ã¨ã—ã¦æ­£è¦åŒ–
 		double ygain = (double)PNT_HEIGHT /(double) max;
 		
 		for(int i = 0; i < drawBuffer2.length ; i++){
@@ -209,7 +209,7 @@ public class SpectrumPanel extends GraphPanel{
 	}
 	
 	/**
-	 * ¸“xN‚Ì•\¦
+	 * ç²¾åº¦Nã®è¡¨ç¤º
 	 * @param n
 	 */
 	public void setInfoLabel(double n){

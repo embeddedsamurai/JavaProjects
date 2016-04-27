@@ -16,25 +16,25 @@ public class SignalPanel extends GraphPanel{
 	/** For Debug */
 	public static final boolean DEBUG=true;
 
-	//“ü—Í”gŒ`‚ÌF
+	//å…¥åŠ›æ³¢å½¢ã®è‰²
 	private static final Color INPUT_COLOR = Color.RED;
-	//o—Í”gŒ`‚ÌF
+	//å‡ºåŠ›æ³¢å½¢ã®è‰²
 	private static final Color OUTPUT_COLOR = Color.BLUE;
 	
-	//•`‰æƒoƒbƒtƒ@ 512ƒ|ƒCƒ“ƒg
+	//æç”»ãƒãƒƒãƒ•ã‚¡ 512ãƒã‚¤ãƒ³ãƒˆ
 	private double[] input  = new double[PNT_WIDTH ];
 	private double[] output = new double[PNT_HEIGHT ];
 	
-	//ü”g”‚È‚Ç‚ğ•\¦	
+	//å‘¨æ³¢æ•°ãªã©ã‚’è¡¨ç¤º	
 	private String infoLabel = "";
 
 	MyCanvas mc;
 
-	//ƒTƒ“ƒvƒŠƒ“ƒOüŠú 1/250=0.004
+	//ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æœŸ 1/250=0.004
 	//public double stime=0.004;
 	public double alltime=0.004*input.length;
 	/**
-	  * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	  * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	  */
 	public SignalPanel(MyCanvas mc) {
 		this.mc=mc;
@@ -44,29 +44,29 @@ public class SignalPanel extends GraphPanel{
 	}	
 	
 	public void init(){
-		//”gŒ`•`‰æƒoƒbƒtƒ@‚ğ‰Šú‰»‚·‚é
+		//æ³¢å½¢æç”»ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–ã™ã‚‹
 		for(int i = 0; i < input.length; i++)input[i] = 0;
 		for(int i = 0; i < output.length; i++)output[i] = 0;
 		
 	}
 	
 	/**
-	 * •`‰æ—pƒƒ\ƒbƒh
+	 * æç”»ç”¨ãƒ¡ã‚½ãƒƒãƒ‰
 	 */
 	public void paintComponent(double dt) {
-		//ƒtƒHƒ“ƒg‚Ìİ’è
+		//ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®š
 		mc.back.setFont(FONT);
-		//”wŒi‚Ì•`‰æ
+		//èƒŒæ™¯ã®æç”»
 		drawBackground();
-		//”gŒ`‚Ì•`‰æ
+		//æ³¢å½¢ã®æç”»
 		drawWave(dt);
-		//ƒ‰ƒxƒ‹‚Ì•`‰æ
+		//ãƒ©ãƒ™ãƒ«ã®æç”»
 		drawInfoLabel();
 	}	
 	
 	/**
-	 * ”wŒi‚ğ•`‰æ
-	 * @param g GraphicsƒIƒuƒWƒFƒNƒg
+	 * èƒŒæ™¯ã‚’æç”»
+	 * @param g Graphicsã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	private void drawBackground(){
 		
@@ -100,7 +100,7 @@ public class SignalPanel extends GraphPanel{
 		mc.back.setFont(BG_FONT);
 		
 		
-		//–Ú·‚èü ‰¡
+		//ç›®ç››ã‚Šç·š æ¨ª
 		int j=0;
 		for(double i = minx; i < maxx; i += userTickX){
 			
@@ -117,7 +117,7 @@ public class SignalPanel extends GraphPanel{
 			j++;
 		}
 		
-		//–Ú·‚èü c	
+		//ç›®ç››ã‚Šç·š ç¸¦	
 		j=0;
 		for(double i = miny*10; i <= maxy*10 ; i += userTickY*10){
 			
@@ -137,7 +137,7 @@ public class SignalPanel extends GraphPanel{
 	}
 	
 	/**
-	 * “ü—ÍM†‚ğ•`‰æ‚·‚é
+	 * å…¥åŠ›ä¿¡å·ã‚’æç”»ã™ã‚‹
 	 * @param val
 	 */
 	public void putInput(double val){	
@@ -149,7 +149,7 @@ public class SignalPanel extends GraphPanel{
 	
 	
 	/**
-	 * o—ÍM†‚ğ•`‰æ‚·‚é
+	 * å‡ºåŠ›ä¿¡å·ã‚’æç”»ã™ã‚‹
 	 * @param val
 	 */
 	public void putOutput(double val){
@@ -161,27 +161,27 @@ public class SignalPanel extends GraphPanel{
 	
 	
 	/**
-	 * ”gŒ`‚ğ•`‰æ
-	 * @param g GraphicsƒIƒuƒWƒFƒNƒg
+	 * æ³¢å½¢ã‚’æç”»
+	 * @param g Graphicsã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	private void drawWave(double dt){
 		
 		mc.back.setColor(INPUT_COLOR);
-		//“ü—ÍM†‚ğ•`‰æ
+		//å…¥åŠ›ä¿¡å·ã‚’æç”»
 		for(int i = 0; i < input.length - 1 ; i++){
 			mc.drawLine(i*dt, input[i],(i + 1)*dt, input[i + 1],1);
 		}		
 		
 		mc.back.setColor(OUTPUT_COLOR);
-		//o—ÍM†‚ğ•`‰æ
+		//å‡ºåŠ›ä¿¡å·ã‚’æç”»
 		for(int i = 0; i < output.length - 1; i++){
 			mc.drawLine(i*dt, output[i],(i + 1)*dt,output[i + 1],1);
 		}
 	}
 	
 	/**
-	 * ü”g”‚È‚Ç‚Ìî•ñ‚ğ•`‰æ 
-	 * @param g GraphicsƒIƒuƒWƒFƒNƒg
+	 * å‘¨æ³¢æ•°ãªã©ã®æƒ…å ±ã‚’æç”» 
+	 * @param g Graphicsã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	 */
 	private void drawInfoLabel(){
 		mc.back.setFont(FONT);
@@ -191,16 +191,16 @@ public class SignalPanel extends GraphPanel{
 	}
 	
 	/**
-	 * ü”g”‚È‚Ç‚Ìî•ñ‚ğ•ÏX 
-	 * @param sample ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-	 * @param freq@@@ü”g”
+	 * å‘¨æ³¢æ•°ãªã©ã®æƒ…å ±ã‚’å¤‰æ›´ 
+	 * @param sample ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+	 * @param freqã€€ã€€ã€€å‘¨æ³¢æ•°
 	 */
 	public void setInfoLabel(double freq,double sample){
 		this.infoLabel = "Sample:" + sample + "Hz" + " Freq:" + freq + "Hz";
 	}		
 	
 	/**
-	 * X•ûŒü‚ÌŠg‘åk¬—¦‚ğ•ÏX
+	 * Xæ–¹å‘ã®æ‹¡å¤§ç¸®å°ç‡ã‚’å¤‰æ›´
 	 * @param value
 	 */
 	public void setXGain(int value){

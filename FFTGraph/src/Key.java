@@ -1,5 +1,5 @@
 /*
- * ì¬“ú: 2005/9/10
+ * ä½œæˆæ—¥: 2005/9/10
  *
  * Copyright 2005 Embedded.Samurai, Inc. All rights reserved.
  *
@@ -10,7 +10,7 @@
 
 
 /**
-	* ƒCƒ“ƒXƒ^ƒ“ƒX‚ğì‚ç‚È‚¢ê‡‚ÍfinalƒNƒ‰ƒX
+	* ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œã‚‰ãªã„å ´åˆã¯finalã‚¯ãƒ©ã‚¹
 	*/
 public final class Key{
 	
@@ -33,12 +33,12 @@ public final class Key{
 
 
 	/**
-	 * ƒL[æ“¾—pƒtƒ‰ƒO.
+	 * ã‚­ãƒ¼å–å¾—ç”¨ãƒ•ãƒ©ã‚°.
 	 * <p>
-	 * keyFlag[0]: ƒL[‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚ğ‹L‰¯‚·‚éB<br>
-	 * keyFlag[1]: ƒL[‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚Ì”»’è‚Ég‚¤B<br>
-	 * keyFlag[2]: ƒL[‚ª—£‚³‚ê‚½‚±‚Æ‚ğ‹L‰¯‚·‚éB<br>
-	 * keyFlag[3]: ƒL[‚ª’·‰Ÿ‚µ‚³‚ê‚½‚±‚Æ‚Ì”»’è‚Ég‚¤B<br>
+	 * keyFlag[0]: ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã‚’è¨˜æ†¶ã™ã‚‹ã€‚<br>
+	 * keyFlag[1]: ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã®åˆ¤å®šã«ä½¿ã†ã€‚<br>
+	 * keyFlag[2]: ã‚­ãƒ¼ãŒé›¢ã•ã‚ŒãŸã“ã¨ã‚’è¨˜æ†¶ã™ã‚‹ã€‚<br>
+	 * keyFlag[3]: ã‚­ãƒ¼ãŒé•·æŠ¼ã—ã•ã‚ŒãŸã“ã¨ã®åˆ¤å®šã«ä½¿ã†ã€‚<br>
 	 * </p>
 	 */
 	public static long keyFlag[] = new long[4];
@@ -47,7 +47,7 @@ public final class Key{
 	public static boolean isPressMouse = false;
 
 	/**
-		* ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		* ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		*/
 	public Key(){
 		for(int i=0;i<4;i++) keyFlag[i] = 0;
@@ -58,16 +58,16 @@ public final class Key{
 	}
 
 	/**
-		* ‰Šú‰»
+		* åˆæœŸåŒ–
 		*/
 	public static void init(){
-		// ƒL[‚Ì‰Šú‰»
+		// ã‚­ãƒ¼ã®åˆæœŸåŒ–
 		keyFlag[0] = 0;
 		keyFlag[2] = 0;
 	}
 
 	/**
-	 * ƒL[ˆ—‚ğ“o˜^‚µ‚Ü‚·B
+	 * ã‚­ãƒ¼å‡¦ç†ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
 	 * <br>
 	 */
 	public static void registKeyEvent() {
@@ -77,8 +77,8 @@ public final class Key{
 	}
 
 	/**
-	 * ƒL[‰Ÿ‚µ”»’fB
-	 * @param key - ƒL[ƒR[ƒh
+	 * ã‚­ãƒ¼æŠ¼ã—åˆ¤æ–­ã€‚
+	 * @param key - ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	public static boolean isKeyPressed(int key) {
 		if ((keyFlag[1] & (1L << key)) != 0) {
@@ -88,8 +88,8 @@ public final class Key{
 	}
 
 	/**
-		* ƒL[’·‰Ÿ‚µ”»’fB
-		* @param key - ƒL[ƒR[ƒh
+		* ã‚­ãƒ¼é•·æŠ¼ã—åˆ¤æ–­ã€‚
+		* @param key - ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰
 		*/
 	public static boolean isKeyRepeated(int key) {
 		if ((keyFlag[3] & (1L << key)) != 0) {
@@ -99,8 +99,8 @@ public final class Key{
 	}
 
 	/**
-	 * ƒL[ƒŠƒŠ[ƒX”»’f
-	 * @param key - ƒL[ƒR[ƒh
+	 * ã‚­ãƒ¼ãƒªãƒªãƒ¼ã‚¹åˆ¤æ–­
+	 * @param key - ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰
 	 */
 	public static boolean isKeyReleased(int key){
 		if ((keyFlag[2] & (1L << key)) == 0) {
@@ -110,22 +110,22 @@ public final class Key{
 	}
 
 	/**
-		* ƒL[‚ª‚Æ‚è‚ ‚¦‚¸‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©Šm‚©‚ß‚éB<BR>
-		* ‚±‚Ìê‡A‰Ÿ‰º‚Æ’·‰Ÿ‚µ‚Ì—¼•û‚ªŠÜ‚Ü‚ê‚éB
-		* @param key - ƒL[ƒR[ƒh
-		* @return <lo><li>true - ‚Æ‚è‚ ‚¦‚¸‰Ÿ‚³‚ê‚Ä‚¢‚é<li>false - G‚ç‚ê‚Ä‚·‚ç‚¢‚È‚¢</lo>
+		* ã‚­ãƒ¼ãŒã¨ã‚Šã‚ãˆãšæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ç¢ºã‹ã‚ã‚‹ã€‚<BR>
+		* ã“ã®å ´åˆã€æŠ¼ä¸‹ã¨é•·æŠ¼ã—ã®ä¸¡æ–¹ãŒå«ã¾ã‚Œã‚‹ã€‚
+		* @param key - ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰
+		* @return <lo><li>true - ã¨ã‚Šã‚ãˆãšæŠ¼ã•ã‚Œã¦ã„ã‚‹<li>false - è§¦ã‚‰ã‚Œã¦ã™ã‚‰ã„ãªã„</lo>
 		*/
 	public static boolean isKeyPressOrRepeated(int key){
 		return isKeyPressed(key) || isKeyRepeated(key);
 	}
 
 	/**
-		* ƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©AƒŠƒs[ƒg‚³‚ê‚Ä‚¢‚ê‚Îtrue‚ğ•Ô‚·B<BR>
-		* ‚½‚¾‚µkeyWaitTimer‚ÆkeyRepeatWait‚É‚æ‚Á‚Ä‚ ‚ç‚í‚³‚ê‚é<BR>
-		* ƒŠƒs[ƒgŠÔŠu‚Åtrue‚ª‹A‚éB<BR>
-		* ‚Ü‚½isKeyPressed()‚É”½‰‚µ‚½‚Æ‚«‚ÍkeyWaitTimer‚ÍˆÓ–¡‚ğ¬‚³‚È‚¢B
-		* ‚±‚ê‚Í‰Ÿ‚µ‚Á‚Ï‚È‚µ‚É‚·‚é‚Æ‚ä‚é‚­ƒJ[ƒ\ƒ‹‚ª“®‚­‚ªA
-		* ƒL[˜A‘Å‚·‚é‚ÆƒJ[ƒ\ƒ‹‚ª‘‚­“®‚©‚¹‚é‚Æ‚¢‚¤‹@”\‚É‘Š“–‚·‚éB
+		* ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ã€ãƒªãƒ”ãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚Œã°trueã‚’è¿”ã™ã€‚<BR>
+		* ãŸã ã—keyWaitTimerã¨keyRepeatWaitã«ã‚ˆã£ã¦ã‚ã‚‰ã‚ã•ã‚Œã‚‹<BR>
+		* ãƒªãƒ”ãƒ¼ãƒˆé–“éš”ã§trueãŒå¸°ã‚‹ã€‚<BR>
+		* ã¾ãŸisKeyPressed()ã«åå¿œã—ãŸã¨ãã¯keyWaitTimerã¯æ„å‘³ã‚’æˆã•ãªã„ã€‚
+		* ã“ã‚Œã¯æŠ¼ã—ã£ã±ãªã—ã«ã™ã‚‹ã¨ã‚†ã‚‹ãã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ããŒã€
+		* ã‚­ãƒ¼é€£æ‰“ã™ã‚‹ã¨ã‚«ãƒ¼ã‚½ãƒ«ãŒæ—©ãå‹•ã‹ã›ã‚‹ã¨ã„ã†æ©Ÿèƒ½ã«ç›¸å½“ã™ã‚‹ã€‚
 		*/
 
 	private static int keyWaitTimer;

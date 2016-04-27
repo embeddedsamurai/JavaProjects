@@ -14,7 +14,7 @@ import java.applet.*;
 
 public class ECG implements WaveGen{
 	
-	/** ƒtƒ@ƒCƒ‹“Ç‚İ‚İ—p*/
+	/** ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç”¨*/
 	public static final boolean DEBUG=false;
 	URL mURL;
 	private InputStream       is;
@@ -25,7 +25,7 @@ public class ECG implements WaveGen{
 	private double min  = 0;
 	private static int cnt=0;
 	/**
-	 *ƒRƒ“ƒXƒgƒ‰ƒNƒ^ 
+	 *ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ 
 	 */
 	public ECG(String url) {
 		try {
@@ -35,7 +35,7 @@ public class ECG implements WaveGen{
 			br = new BufferedReader(in);
 			
 			
-			//Å‰‚Ì500‚ÌÅ‘å’l‚©‚çgain‚ğŒˆ‚ß‚é
+			//æœ€åˆã®500ã®æœ€å¤§å€¤ã‹ã‚‰gainã‚’æ±ºã‚ã‚‹
 			max = 0;
 			min = Double.MAX_VALUE;
 			
@@ -74,18 +74,18 @@ public class ECG implements WaveGen{
 	}
 	
 	/**
-	 * ‰Šú‰»
+	 * åˆæœŸåŒ–
 	 */
 	public void init(double freq, double sample) {}
 	
 	/**
-	 * Ÿ‚Ì”gŒ`‚ğ“¾‚é
+	 * æ¬¡ã®æ³¢å½¢ã‚’å¾—ã‚‹
 	 */
 	public double nextWave() {
 		try {
-			//ˆês“Ç‚Ş
+			//ä¸€è¡Œèª­ã‚€
 			String tmpStr = br.readLine();
-			//ƒtƒ@ƒCƒ‹‚ÌI‚í‚è‚É’B‚µ‚½‚Æ‚«
+			//ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ã‚ã‚Šã«é”ã—ãŸã¨ã
 			if(tmpStr == null){
 				br.close();
 				in.close();
@@ -99,12 +99,12 @@ public class ECG implements WaveGen{
 				tmpStr = br.readLine();
 				if(DEBUG) cnt=0;
 			}
-			//ƒ_ƒuƒ‹‚É•ÏŠ·
+			//ãƒ€ãƒ–ãƒ«ã«å¤‰æ›
 			double d = Double.parseDouble(tmpStr);
 			
 			if(DEBUG) System.out.println("cnt:"+(cnt++)+" d2="+d);
 
-			//Å¬’l‚ªGL‚É‚È‚é‚æ‚¤‚ÉˆÚ“®
+			//æœ€å°å€¤ãŒGLã«ãªã‚‹ã‚ˆã†ã«ç§»å‹•
 			return (d - min)*gain;
 		
 		} catch (Exception e) {

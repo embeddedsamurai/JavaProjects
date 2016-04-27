@@ -5,9 +5,9 @@
 
 public class SawtoothGen implements WaveGen {
 
-	/** ü”g” */
+	/** å‘¨æ³¢æ•° */
 	private double freq = 0;
-	/** ƒTƒ“ƒvƒŠƒ“ƒOü”g” */
+	/** ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•° */
 	private double sample = 0;
 	
 	private int count = 0;
@@ -17,9 +17,9 @@ public class SawtoothGen implements WaveGen {
 	}
 	
 	/**
-	 * ‰Šú‰»
-	 * @param freq   ¶¬‚·‚é‚Ì‚±‚¬‚è”gŒ`‚Ìü”g”
-	 * @param sample ¶¬‚·‚é‚Ì‚±‚¬‚è”gŒ`‚ÌƒTƒ“ƒvƒŠƒ“ƒOü”g”
+	 * åˆæœŸåŒ–
+	 * @param freq   ç”Ÿæˆã™ã‚‹ã®ã“ãã‚Šæ³¢å½¢ã®å‘¨æ³¢æ•°
+	 * @param sample ç”Ÿæˆã™ã‚‹ã®ã“ãã‚Šæ³¢å½¢ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 	 */
 	public void init(double freq, double sample) {
 		this.freq = freq;
@@ -28,8 +28,8 @@ public class SawtoothGen implements WaveGen {
 	}
 
 	/**
-	 * Ÿ‚Ì”gŒ`‚ğæ“¾‚·‚é
-	 * @return Ÿ‚Ì”gŒ`
+	 * æ¬¡ã®æ³¢å½¢ã‚’å–å¾—ã™ã‚‹
+	 * @return æ¬¡ã®æ³¢å½¢
 	 */
 	public double nextWave() {
 		
