@@ -34,7 +34,7 @@ $$ f(\Delta{t} \cdot k) = \sum_{n=0}^{N-1} G(\frac{1}{\Delta{t} N}\cdot n) e^{i 
 $$ W = e^{-i2\pi/N} $$
 $$ G(\frac{n}{N}) = \sum_{k=0}^{N-1} f(k)W^{nk} $$
 
-#### compaile
+#### Compaile
 
 ```
 javac ./src/*.java -encoding UTF8 -Xlint:deprecation -d ./bin/
