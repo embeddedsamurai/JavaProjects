@@ -53,4 +53,4 @@ appletviewer ./bin/DFTFFTGraph.html
 
 ### 3.4 1D-FDTD Program
 
-### 3.5 Ray-tracing Program
+### 3.5 1D-CIP Program
